@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Floor — Fractional Sales Management</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0e0e0d;
+    --off-white: #f4f2ed;
+    --cream: #ede9e0;
+    --gold: #c9a84c;
+    --gold-light: #e8d5a3;
+    --dark-green: #1a2e1e;
+    --mid-green: #2d4d33;
+    --text-muted: #7a7670;
+    --border: rgba(14,14,13,0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--off-white);
+    color: var(--black);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(244,242,237,0.94);
+    backdrop-filter: blur(14px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--black);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--text-muted);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--black); }
+  .nav-cta {
+    background: var(--dark-green) !important;
+    color: var(--off-white) !important;
+    padding: 0.55rem 1.25rem;
+    border-radius: 2px;
+    font-size: 0.78rem !important;
+    letter-spacing: 0.06em !important;
+  }
+  .nav-cta:hover { background: var(--mid-green) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+  .hero-left {
+    background: var(--dark-green);
+    padding: 6rem 4rem 5rem;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .hero-left::before {
+    content: '';
+    position: absolute; top: -120px; right: -120px;
+    width: 450px; height: 450px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem; font-weight: 500;
+  }
+  .hero-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 4.5vw, 4rem);
+    font-weight: 700; line-height: 1.1;
+    color: var(--off-white); margin-bottom: 1.75rem;
+    letter-spacing: -0.02em;
+  }
+  .hero-headline em { color: var(--gold); font-style: italic; }
+  .hero-sub {
+    font-size: 1.05rem; color: rgba(244,242,237,0.72);
+    line-height: 1.75; max-width: 430px;
+    margin-bottom: 2.5rem; font-weight: 300;
+  }
+  .hero-cta-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold); color: var(--black);
+    padding: 0.9rem 2rem; border: none; border-radius: 2px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.85rem;
+    font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
+    cursor: pointer; text-decoration: none; display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent; color: var(--off-white);
+    padding: 0.9rem 2rem; border: 0.5px solid rgba(244,242,237,0.3);
+    border-radius: 2px; font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em;
+    text-transform: uppercase; cursor: pointer; text-decoration: none;
+    display: inline-block; transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--gold); background: rgba(201,168,76,0.08); }
+
+  /* HERO RIGHT */
+  .hero-right {
+    background: var(--cream); padding: 6rem 4rem 5rem;
+    display: flex; flex-direction: column; justify-content: center;
+    border-left: 0.5px solid var(--border);
+  }
+  .stat-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2px; background: var(--border);
+    border: 0.5px solid var(--border); margin-bottom: 2rem;
+  }
+  .stat-box { background: var(--off-white); padding: 1.75rem 1.5rem; }
+  .stat-number {
+    font-family: 'Playfair Display', serif; font-size: 2.6rem;
+    font-weight: 700; color: var(--dark-green);
+    line-height: 1; margin-bottom: 0.3rem;
+  }
+  .stat-label { font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; }
+  .stat-source { font-size: 0.65rem; color: rgba(122,118,112,0.6); margin-top: 4px; display: block; }
+  .hero-proof {
+    font-size: 0.95rem; color: var(--text-muted); line-height: 1.7;
+    border-left: 2px solid var(--gold); padding-left: 1.25rem;
+    font-style: italic;
+  }
+
+  /* SECTION BASE */
+  section { padding: 6rem 3rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-tag {
+    font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 700; line-height: 1.2; letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+  .section-body {
+    font-size: 1rem; color: var(--text-muted);
+    line-height: 1.75; max-width: 560px; font-weight: 300;
+  }
+  hr.divider { border: none; border-top: 0.5px solid var(--border); margin: 1.5rem 0; }
+
+  /* INTRO BAND */
+  .intro-band {
+    background: var(--black); padding: 2.5rem 3rem;
+    display: flex; align-items: center; gap: 2rem;
+    border-top: 0.5px solid rgba(255,255,255,0.06);
+  }
+  .intro-band p {
+    font-size: 1.05rem; color: rgba(244,242,237,0.55);
+    line-height: 1.7; font-weight: 300; max-width: 900px;
+  }
+  .intro-band strong { color: var(--off-white); font-weight: 500; }
+
+  /* PROBLEM */
+  .problem { background: var(--black); color: var(--off-white); }
+  .problem .section-body { color: rgba(244,242,237,0.6); max-width: 600px; }
+  .problem-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: rgba(244,242,237,0.08);
+    border: 0.5px solid rgba(244,242,237,0.08); margin-top: 3.5rem;
+  }
+  .problem-card { background: var(--black); padding: 2rem 1.75rem; }
+  .problem-number {
+    font-family: 'Playfair Display', serif; font-size: 3rem;
+    font-weight: 700; color: rgba(201,168,76,0.18); line-height: 1; margin-bottom: 1rem;
+  }
+  .problem-card h3 { font-size: 1rem; font-weight: 500; color: var(--off-white); margin-bottom: 0.6rem; }
+  .problem-card p { font-size: 0.88rem; color: rgba(244,242,237,0.45); line-height: 1.65; font-weight: 300; }
+
+  /* DATA STRIP */
+  .data-strip { background: var(--dark-green); padding: 4rem 3rem; }
+  .data-strip-inner { max-width: 1100px; margin: 0 auto; }
+  .data-strip .section-title { color: var(--off-white); margin-bottom: 2.5rem; }
+  .data-row {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: rgba(244,242,237,0.1);
+    border: 0.5px solid rgba(244,242,237,0.1);
+  }
+  .data-box { background: var(--dark-green); padding: 1.75rem 1.5rem; }
+  .data-number {
+    font-family: 'Playfair Display', serif; font-size: 2.4rem;
+    font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 0.4rem;
+  }
+  .data-desc { font-size: 0.82rem; color: rgba(244,242,237,0.65); line-height: 1.5; margin-bottom: 4px; }
+  .data-source { font-size: 0.62rem; color: rgba(244,242,237,0.3); font-style: italic; }
+
+  /* WHAT WE DO */
+  .what { background: var(--off-white); }
+  .what-layout {
+    display: grid; grid-template-columns: 1fr 1.4fr;
+    gap: 5rem; align-items: start; margin-top: 3.5rem;
+  }
+  .what-sticky { position: sticky; top: 120px; }
+  .what-sticky .section-body { margin-bottom: 2rem; }
+  .ei-callout {
+    background: var(--dark-green); border-radius: 2px;
+    padding: 1.5rem; margin-top: 0;
+  }
+  .ei-callout-label {
+    font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.5rem;
+  }
+  .ei-callout-text {
+    font-size: 0.88rem; color: rgba(244,242,237,0.75);
+    line-height: 1.6; font-weight: 300;
+  }
+  .pillar {
+    display: flex; gap: 1.5rem; padding: 1.75rem 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .pillar:first-child { border-top: 0.5px solid var(--border); }
+  .pillar-icon {
+    width: 44px; height: 44px; background: var(--dark-green);
+    border-radius: 2px; display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0;
+    color: var(--gold); font-size: 1.1rem;
+  }
+  .pillar-title { font-size: 1rem; font-weight: 500; margin-bottom: 0.35rem; }
+  .pillar-body { font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; font-weight: 300; }
+  .pillar-stat { font-size: 0.72rem; color: var(--gold); margin-top: 6px; font-weight: 500; }
+
+  /* FOR YOU IF */
+  .foryou { background: var(--cream); }
+  .foryou-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: var(--border);
+    border: 0.5px solid var(--border); margin-top: 3rem;
+  }
+  .foryou-card { background: var(--off-white); padding: 2rem 1.75rem; }
+  .foryou-check { font-size: 1.1rem; color: var(--gold); margin-bottom: 0.75rem; display: block; }
+  .foryou-card h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.5rem; }
+  .foryou-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; font-weight: 300; }
+
+  /* WEEK ONE */
+  .weekone { background: var(--off-white); }
+  .timeline { margin-top: 3.5rem; position: relative; }
+  .timeline::before {
+    content: ''; position: absolute;
+    left: 28px; top: 0; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .tl-item {
+    display: flex; gap: 2rem; margin-bottom: 2rem;
+    position: relative; opacity: 0; transform: translateY(20px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  .tl-item.visible { opacity: 1; transform: none; }
+  .tl-dot {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--dark-green); color: var(--gold);
+    font-family: 'Playfair Display', serif; font-size: 0.75rem;
+    font-weight: 700; display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0; z-index: 1;
+    letter-spacing: 0.02em; text-align: center; line-height: 1.2;
+  }
+  .tl-content {
+    background: var(--cream); border: 0.5px solid var(--border);
+    border-radius: 2px; padding: 1.5rem 1.75rem; flex: 1;
+  }
+  .tl-day { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold); font-weight: 500; margin-bottom: 0.3rem; }
+  .tl-title { font-size: 1rem; font-weight: 500; margin-bottom: 0.5rem; }
+  .tl-body { font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; font-weight: 300; }
+  .tl-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 0.75rem; }
+  .tl-tag { font-size: 0.68rem; padding: 2px 9px; border-radius: 1px; font-weight: 500; letter-spacing: 0.03em; }
+  .tag-owner { background: #e8d5f5; color: #5a2d82; }
+  .tag-seller { background: #d0ead8; color: #1a4d2a; }
+  .tag-jeff { background: #cfe2f5; color: #1a3d5c; }
+  .tag-system { background: #fce8c8; color: #7a4a0a; }
+
+  /* PACKAGES */
+  .packages { background: var(--cream); }
+  .pkg-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: var(--border);
+    border: 0.5px solid var(--border); margin-top: 3.5rem;
+  }
+  .pkg-card {
+    background: var(--off-white); padding: 2.5rem 2rem;
+    display: flex; flex-direction: column;
+  }
+  .pkg-card.featured { background: var(--dark-green); color: var(--off-white); }
+  .pkg-badge {
+    display: inline-block; font-size: 0.63rem; letter-spacing: 0.1em;
+    text-transform: uppercase; font-weight: 500; padding: 3px 10px;
+    background: var(--gold); color: var(--black); border-radius: 1px; margin-bottom: 1.25rem;
+  }
+  .pkg-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .pkg-tagline { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.5rem; font-weight: 300; }
+  .pkg-card.featured .pkg-tagline { color: rgba(244,242,237,0.55); }
+  .pkg-price { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 700; color: var(--dark-green); line-height: 1; margin-bottom: 0.25rem; }
+  .pkg-card.featured .pkg-price { color: var(--gold); }
+  .pkg-price-note { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 2rem; }
+  .pkg-card.featured .pkg-price-note { color: rgba(244,242,237,0.45); }
+  .pkg-divider { height: 0.5px; background: var(--border); margin-bottom: 1.5rem; }
+  .pkg-card.featured .pkg-divider { background: rgba(244,242,237,0.12); }
+  .pkg-features { list-style: none; flex: 1; margin-bottom: 2rem; }
+  .pkg-features li {
+    font-size: 0.86rem; padding: 0.55rem 0;
+    border-bottom: 0.5px solid var(--border);
+    display: flex; gap: 0.6rem; align-items: flex-start;
+    line-height: 1.45; font-weight: 300;
+  }
+  .pkg-card.featured .pkg-features li { color: rgba(244,242,237,0.82); border-color: rgba(244,242,237,0.1); }
+  .pkg-features li:last-child { border-bottom: none; }
+  .pkg-check { color: var(--gold); flex-shrink: 0; font-size: 0.82rem; margin-top: 1px; }
+  .pkg-btn {
+    display: block; text-align: center; padding: 0.85rem;
+    border-radius: 2px; font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; text-decoration: none;
+    cursor: pointer; transition: all 0.2s; border: none;
+  }
+  .pkg-btn-outline { background: transparent; border: 0.5px solid var(--border); color: var(--black); }
+  .pkg-btn-outline:hover { background: var(--cream); border-color: var(--black); }
+  .pkg-btn-gold { background: var(--gold); color: var(--black); }
+  .pkg-btn-gold:hover { background: var(--gold-light); }
+  .pkg-vs-note {
+    margin-top: 1.5rem; padding: 1.25rem 1.5rem;
+    background: rgba(26,46,30,0.04); border-left: 2px solid var(--gold);
+    border-radius: 0 2px 2px 0;
+  }
+  .pkg-vs-note p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.65; }
+  .pkg-vs-note strong { color: var(--black); }
+
+  /* ADDONS */
+  .addons-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: var(--border);
+    border: 0.5px solid var(--border); margin-top: 2rem;
+  }
+  .addon { background: var(--off-white); padding: 1.5rem; }
+  .addon-name { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .addon-price { font-size: 0.8rem; color: var(--gold); font-weight: 500; margin-bottom: 0.5rem; }
+  .addon-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.55; font-weight: 300; }
+
+  /* ABOUT */
+  .about { background: var(--black); color: var(--off-white); }
+  .about-layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: 5rem; align-items: center; margin-top: 3rem; }
+  .about-name { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; margin-bottom: 0.25rem; color: var(--off-white); }
+  .about-title { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  .about-bio { font-size: 0.95rem; color: rgba(244,242,237,0.65); line-height: 1.75; font-weight: 300; margin-bottom: 1.5rem; }
+  .cred-list { list-style: none; }
+  .cred-list li { font-size: 0.85rem; color: rgba(244,242,237,0.5); padding: 0.45rem 0; border-bottom: 0.5px solid rgba(244,242,237,0.08); display: flex; gap: 0.75rem; font-weight: 300; }
+  .cred-list li:last-child { border-bottom: none; }
+  .cred-dot { color: var(--gold); flex-shrink: 0; }
+
+  /* CTA */
+  .cta-section {
+    background: var(--dark-green); color: var(--off-white);
+    text-align: center; padding: 7rem 3rem;
+  }
+  .cta-section .section-title { color: var(--off-white); max-width: 680px; margin: 0 auto 1rem; }
+  .cta-section .section-body { color: rgba(244,242,237,0.6); margin: 0 auto 2.5rem; text-align: center; }
+  .cta-btn-wrap { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .cta-note { margin-top: 1.25rem; font-size: 0.78rem; color: rgba(244,242,237,0.3); font-weight: 300; }
+
+  /* FOOTER */
+  footer {
+    background: var(--black); color: rgba(244,242,237,0.3);
+    padding: 2rem 3rem; display: flex;
+    align-items: center; justify-content: space-between;
+    font-size: 0.78rem; font-weight: 300;
+  }
+  footer .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: rgba(244,242,237,0.65); font-weight: 700; }
+
+  /* FADE IN */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+  .hero-left > * { animation: fadeUp 0.7s ease both; }
+  .hero-eyebrow { animation-delay: 0.1s; }
+  .hero-headline { animation-delay: 0.2s; }
+  .hero-sub { animation-delay: 0.3s; }
+  .hero-cta-group { animation-delay: 0.4s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 4rem 2rem 3rem; }
+    .hero-right { padding: 3rem 2rem 4rem; }
+    section { padding: 4rem 1.5rem; }
+    .problem-grid, .foryou-grid, .pkg-grid, .data-row { grid-template-columns: 1fr; }
+    .what-layout, .about-layout { grid-template-columns: 1fr; gap: 2rem; }
+    .what-sticky { position: static; }
+    .addons-grid { grid-template-columns: 1fr 1fr; }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+    .intro-band { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">The Floor</a>
+  <ul class="nav-links">
+    <li><a href="#problem">The problem</a></li>
+    <li><a href="#what">What we do</a></li>
+    <li><a href="#packages">Pricing</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="https://calendly.com/jeff-lfsm" target="_blank" class="nav-cta">Book a call</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding:0; padding-top:80px;">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Fractional Sales Management</p>
+    <h1 class="hero-headline">You didn't cut the need.<br>You cut the<br><em>person filling it.</em></h1>
+    <p class="hero-sub">When the sales manager goes, the coaching, accountability, and daily development go with them. The Floor puts that layer back — without the $200K salary.</p>
+    <div class="hero-cta-group">
+      <a href="https://calendly.com/jeff-lfsm" target="_blank" class="btn-primary">Book a 30-min call</a>
+      <a href="#problem" class="btn-ghost">See the problem</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stat-grid">
+      <div class="stat-box">
+        <p class="stat-number">84%</p>
+        <p class="stat-label">of sales reps missed quota in 2024</p>
+        <span class="stat-source">Kixie, 2024</span>
+      </div>
+      <div class="stat-box">
+        <p class="stat-number">$200K+</p>
+        <p class="stat-label">average total comp for a sales manager in 2025</p>
+        <span class="stat-source">RepVue, 2026</span>
+      </div>
+      <div class="stat-box">
+        <p class="stat-number">76%</p>
+        <p class="stat-label">of reps coached weekly hit quota vs. 47% coached quarterly</p>
+        <span class="stat-source">MySalesCoach, 2026</span>
+      </div>
+      <div class="stat-box">
+        <p class="stat-number">45%</p>
+        <p class="stat-label">of reps rate the coaching they receive as below average</p>
+        <span class="stat-source">State of Sales Coaching, 2026</span>
+      </div>
+    </div>
+    <p class="hero-proof">The data is unambiguous: consistent, structured coaching is the single most reliable lever for sales performance. Most teams aren't getting it. Yours could be.</p>
+  </div>
+</section>
+
+<!-- INTRO BAND -->
+<div class="intro-band">
+  <p>The Floor is a <strong>fractional sales management service</strong> for founders and CEOs running small sales teams without a dedicated manager. We embed a structured coaching and accountability system into your team's daily workflow — so sellers perform like they have great management, because now they do.</p>
+</div>
+
+<!-- PROBLEM -->
+<section class="problem" id="problem">
+  <div class="section-inner">
+    <p class="section-tag">Why your team is underperforming</p>
+    <h2 class="section-title" style="color:var(--off-white);">The management gap is a revenue gap.</h2>
+    <p class="section-body">Sales managers are typically the first cut when budgets tighten. But the results of that cut — uncoached sellers, drifting pipelines, zero accountability — show up in the numbers within weeks.</p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <p class="problem-number">01</p>
+        <h3>Sellers go uncoached</h3>
+        <p>Without a consistent feedback loop, bad habits compound. Research shows reps with formal coaching programs achieve 28% higher win rates. Without one, that gap widens every quarter.</p>
+      </div>
+      <div class="problem-card">
+        <p class="problem-number">02</p>
+        <h3>You become the de facto manager</h3>
+        <p>Founders shouldn't be running pipeline reviews and 1:1s — they should be running the business. When the management layer disappears, it doesn't go away. It lands on your calendar.</p>
+      </div>
+      <div class="problem-card">
+        <p class="problem-number">03</p>
+        <h3>The EI layer walks out with them</h3>
+        <p>Great managers don't just track activity — they develop people. The emotional intelligence layer — reading the room, managing pressure, building trust — is where deals are actually won.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DATA STRIP -->
+<section class="data-strip" style="padding:4.5rem 3rem;">
+  <div class="data-strip-inner">
+    <p class="section-tag" style="color:var(--gold);">What the research says</p>
+    <h2 class="section-title" style="color:var(--off-white); font-size:1.6rem; margin-bottom:2.5rem;">The numbers behind why this works.</h2>
+    <div class="data-row">
+      <div class="data-box">
+        <p class="data-number">+28%</p>
+        <p class="data-desc">higher win rates in teams with consistent sales coaching programs</p>
+        <span class="data-source">Korn Ferry Sales Enablement Study</span>
+      </div>
+      <div class="data-box">
+        <p class="data-number">+19%</p>
+        <p class="data-desc">more quota attainment when reps have a highly effective coach</p>
+        <span class="data-source">Corporate Executive Board</span>
+      </div>
+      <div class="data-box">
+        <p class="data-number">3.3×</p>
+        <p class="data-desc">greater quota attainment growth when AI tools are paired with human coaching vs. AI alone</p>
+        <span class="data-source">ValueSelling + Aberdeen, 2024</span>
+      </div>
+      <div class="data-box">
+        <p class="data-number">+12%</p>
+        <p class="data-desc">more sales from reps who completed emotional intelligence training — worth $55K+ per rep</p>
+        <span class="data-source">SuperOffice EQ Sales Research</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE DO -->
+<section class="what" id="what">
+  <div class="section-inner">
+    <div class="what-layout">
+      <div class="what-sticky">
+        <p class="section-tag">What The Floor delivers</p>
+        <h2 class="section-title">A management layer your team feels every single day.</h2>
+        <p class="section-body">Not a quarterly review. Not a training event. A real operating rhythm built on behavioral science and two decades of sales leadership — delivered at a fraction of the cost of a full-time hire.</p>
+        <div class="ei-callout">
+          <p class="ei-callout-label">The differentiator</p>
+          <p class="ei-callout-text">Most sales tools coach the process. The Floor coaches the person. Built on I-O psychology and emotional intelligence research, our ProPresence framework develops the human skills that close deals — self-awareness, emotional regulation, communication under pressure — that no CRM or script ever will.</p>
+        </div>
+      </div>
+      <div>
+        <div class="pillar">
+          <div class="pillar-icon">📅</div>
+          <div>
+            <p class="pillar-title">Daily accountability rhythm</p>
+            <p class="pillar-body">Every seller gets a structured daily check-in — one priority, one focus question, one accountability prompt. It's not a task list. It's a management voice in their day, every day.</p>
+            <p class="pillar-stat">Teams coached weekly hit quota at 76% vs. 47% for quarterly — MySalesCoach 2026</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🧠</div>
+          <div>
+            <p class="pillar-title">EI-based coaching (ProPresence)</p>
+            <p class="pillar-body">Bi-weekly coaching calls built around emotional intelligence — reading the buyer, managing pressure, communicating with precision. The skills that turn a good seller into a great one.</p>
+            <p class="pillar-stat">EQ training drives +12% sales revenue — avg. $55K per rep — SuperOffice</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">📊</div>
+          <div>
+            <p class="pillar-title">Pipeline visibility for the owner</p>
+            <p class="pillar-body">Weekly performance summaries that tell you what's actually happening in your pipeline — not just what sellers self-report. Real insight, plain language, no dashboards to learn.</p>
+            <p class="pillar-stat">96% of sales leaders say coaching directly influences team quota attainment — State of Sales Coaching 2025</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">📡</div>
+          <div>
+            <p class="pillar-title">Leadership relay</p>
+            <p class="pillar-body">Your priorities, strategy shifts, and messaging reach your sellers — translated into coaching language, not forwarded in a Slack message no one reads twice.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🗣️</div>
+          <div>
+            <p class="pillar-title">Call pattern analysis + coaching debrief</p>
+            <p class="pillar-body">Transcripts analyzed for patterns — talk/listen ratio, discovery depth, objection handling, tone drift. Sellers get specific, actionable feedback grounded in their own conversations, not a generic script.</p>
+            <p class="pillar-stat">73% of managers spend less than 5% of their time coaching — Qwilr. That gap is what The Floor fills.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR YOU IF -->
+<section class="foryou" id="foryou">
+  <div class="section-inner">
+    <p class="section-tag">Is this for you?</p>
+    <h2 class="section-title">The Floor is built for one specific situation.</h2>
+    <p class="section-body">You run a small sales team. There's no dedicated manager in the room. And you feel it.</p>
+    <div class="foryou-grid">
+      <div class="foryou-card">
+        <span class="foryou-check">→</span>
+        <h3>"I'm managing the sales team myself."</h3>
+        <p>You became the de facto coach, deal reviewer, and pipeline manager when the role was cut. That's time you don't have and work that shouldn't be yours.</p>
+      </div>
+      <div class="foryou-card">
+        <span class="foryou-check">→</span>
+        <h3>"My sellers are capable — but inconsistent."</h3>
+        <p>The talent is there. The results aren't reliable. Without a consistent coaching rhythm, performance depends on who had a good week rather than a system that produces it.</p>
+      </div>
+      <div class="foryou-card">
+        <span class="foryou-check">→</span>
+        <h3>"I can't justify a full-time sales manager yet."</h3>
+        <p>$150K–$200K in base salary is a major commitment for a growing business. You need the result of great management without the overhead of the hire.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WEEK ONE -->
+<section class="weekone" id="weekone">
+  <div class="section-inner">
+    <p class="section-tag">The onboarding</p>
+    <h2 class="section-title">Before we coach, we listen.<br>Week one is the diagnostic.</h2>
+    <p class="section-body">Most consultants show up with a framework built for someone else's team. The Floor shows up with questions — and by Friday, you have a clear picture of exactly what's getting in the way of your number.</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot">MON</div>
+        <div class="tl-content">
+          <p class="tl-day">Day 1 — Monday</p>
+          <p class="tl-title">Owner intake call</p>
+          <p class="tl-body">60-minute deep dive. Revenue goals, team history, what's broken, and what success looks like in 90 days. Jeff listens more than he talks. By the end, we know exactly what we're solving for.</p>
+          <div class="tl-tags">
+            <span class="tl-tag tag-owner">Owner · 60 min</span>
+            <span class="tl-tag tag-jeff">Jeff leads</span>
+          </div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">TUE</div>
+        <div class="tl-content">
+          <p class="tl-day">Day 2 — Tuesday</p>
+          <p class="tl-title">Seller welcome calls + baseline assessment</p>
+          <p class="tl-body">Each seller gets a 30-minute conversation — not a review, a conversation. What do they love about selling? Where do they feel stuck? What do they wish leadership understood? A ProPresence baseline assessment follows: communication style, stress response, and emotional self-awareness.</p>
+          <div class="tl-tags">
+            <span class="tl-tag tag-seller">Sellers · 30 min each</span>
+            <span class="tl-tag tag-system">ProPresence baseline</span>
+            <span class="tl-tag tag-jeff">Jeff leads</span>
+          </div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">WED</div>
+        <div class="tl-content">
+          <p class="tl-day">Day 3 — Wednesday</p>
+          <p class="tl-title">Shadow day — observe before you coach</p>
+          <p class="tl-body">Jeff reviews 2–3 call transcripts or email threads per seller. No feedback yet — just pattern recognition. Talk/listen ratios, discovery depth, objection handling, emotional tone. Jeff annotates for the context tools can't read.</p>
+          <div class="tl-tags">
+            <span class="tl-tag tag-system">Call + email analysis</span>
+            <span class="tl-tag tag-jeff">Jeff reviews</span>
+          </div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">THU</div>
+        <div class="tl-content">
+          <p class="tl-day">Day 4 — Thursday</p>
+          <p class="tl-title">Daily rhythm goes live</p>
+          <p class="tl-body">Sellers receive their first structured daily check-in. One priority, one focus question, one accountability prompt. They respond in a few sentences. The pattern builds from day one.</p>
+          <div class="tl-tags">
+            <span class="tl-tag tag-system">Daily check-in live</span>
+            <span class="tl-tag tag-seller">First seller responses</span>
+          </div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">FRI</div>
+        <div class="tl-content">
+          <p class="tl-day">Day 5 — Friday</p>
+          <p class="tl-title">Diagnostic readout with the owner</p>
+          <p class="tl-body">A plain-language summary: each seller's strengths, their specific coaching priorities, the messaging gaps we found, and the 30-day plan. No deck, no jargon. Just clarity. You leave knowing exactly what we're going to fix and how.</p>
+          <div class="tl-tags">
+            <span class="tl-tag tag-owner">Owner · 45 min</span>
+            <span class="tl-tag tag-jeff">Jeff presents</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section class="packages" id="packages">
+  <div class="section-inner">
+    <p class="section-tag">Pricing</p>
+    <h2 class="section-title">Three tiers. One result:<br>a team that closes more.</h2>
+    <p class="section-body">All packages include the structured daily layer and the diagnostic week. You scale the coaching depth from there. Month-to-month after a 3-month minimum commitment.</p>
+
+    <div class="pkg-grid">
+      <div class="pkg-card">
+        <p class="pkg-name">Sideline</p>
+        <p class="pkg-tagline">Structure + accountability, no coaching calls</p>
+        <p class="pkg-price">$1,500<span style="font-size:1rem;font-weight:300;">/mo</span></p>
+        <p class="pkg-price-note">Up to 3 sellers</p>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features">
+          <li><span class="pkg-check">✓</span>Diagnostic week (owner intake + seller assessments)</li>
+          <li><span class="pkg-check">✓</span>Structured daily check-ins for every seller</li>
+          <li><span class="pkg-check">✓</span>Weekly pipeline summary report to owner</li>
+          <li><span class="pkg-check">✓</span>Leadership message relay (async)</li>
+          <li><span class="pkg-check">✓</span>Monthly 30-min strategy call with Jeff</li>
+        </ul>
+        <a href="https://calendly.com/jeff-lfsm" target="_blank" class="pkg-btn pkg-btn-outline">Get started</a>
+      </div>
+      <div class="pkg-card featured">
+        <span class="pkg-badge">Most popular</span>
+        <p class="pkg-name" style="color:var(--off-white);">On The Floor</p>
+        <p class="pkg-tagline">Full management layer + active coaching</p>
+        <p class="pkg-price">$3,500<span style="font-size:1rem;font-weight:300;">/mo</span></p>
+        <p class="pkg-price-note">Up to 5 sellers · best fit for most clients</p>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features">
+          <li><span class="pkg-check">✓</span>Everything in Sideline</li>
+          <li><span class="pkg-check">✓</span>Bi-weekly 1:1 coaching calls per seller</li>
+          <li><span class="pkg-check">✓</span>Call pattern analysis + personalized coaching debrief</li>
+          <li><span class="pkg-check">✓</span>ProPresence EI core module</li>
+          <li><span class="pkg-check">✓</span>Bi-weekly owner strategy call</li>
+          <li><span class="pkg-check">✓</span>Messaging gap analysis + field feedback loop</li>
+        </ul>
+        <a href="https://calendly.com/jeff-lfsm" target="_blank" class="pkg-btn pkg-btn-gold">Get started</a>
+      </div>
+      <div class="pkg-card">
+        <p class="pkg-name">Full Court</p>
+        <p class="pkg-tagline">Embedded management + deep EI development</p>
+        <p class="pkg-price">$6,500<span style="font-size:1rem;font-weight:300;">/mo</span></p>
+        <p class="pkg-price-note">Up to 10 sellers · custom scope available</p>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features">
+          <li><span class="pkg-check">✓</span>Everything in On The Floor</li>
+          <li><span class="pkg-check">✓</span>Weekly seller coaching cadence</li>
+          <li><span class="pkg-check">✓</span>Full ProPresence EI training program</li>
+          <li><span class="pkg-check">✓</span>Onboarding playbook for new hires</li>
+          <li><span class="pkg-check">✓</span>Quarterly team performance review</li>
+          <li><span class="pkg-check">✓</span>Weekly owner call + direct access</li>
+        </ul>
+        <a href="https://calendly.com/jeff-lfsm" target="_blank" class="pkg-btn pkg-btn-outline">Get started</a>
+      </div>
+    </div>
+
+    <div class="pkg-vs-note" style="margin-top:1.5rem; max-width:660px;">
+      <p>A full-time sales manager costs <strong>$150K–$200K+ in base salary alone</strong> — plus benefits, bonus, equity, and ramp time. The Floor delivers the outcome of great management at a fraction of that investment, with no long-term commitment.</p>
+    </div>
+
+    <p class="section-tag" style="margin-top:3rem;">Add-ons</p>
+    <div class="addons-grid">
+      <div class="addon">
+        <p class="addon-name">Additional seller seat</p>
+        <p class="addon-price">+$400/mo per seller</p>
+        <p class="addon-desc">Scale any package beyond its included headcount without moving to the next tier.</p>
+      </div>
+      <div class="addon">
+        <p class="addon-name">ProPresence workshop</p>
+        <p class="addon-price">$1,800 one-time</p>
+        <p class="addon-desc">Half-day EI training session for the full team. Standalone or integrated into any package.</p>
+      </div>
+      <div class="addon">
+        <p class="addon-name">Sales playbook build</p>
+        <p class="addon-price">$3,000 one-time</p>
+        <p class="addon-desc">Discovery framework, messaging, objection handling, and ICP documentation — built from what we learn about your team specifically.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <p class="section-tag" style="color:var(--gold);">Who runs The Floor</p>
+    <div class="about-layout">
+      <div>
+        <p class="about-name">Jeff</p>
+        <p class="about-title">Founder, The Floor</p>
+        <p class="about-bio">20+ years in B2B sales leadership across digital media, adtech, and direct-to-brand — including Fox News Digital, Thrillist, and Macy's Media Network. I've built teams, carried bags, and managed sellers at every stage of a company's growth.</p>
+        <p class="about-bio">I also hold an M.S. in Industrial-Organizational Psychology — which means the EI layer isn't a tagline. It's a research-backed framework for developing the human side of selling that most coaching programs completely ignore.</p>
+        <p class="about-bio">The Floor exists because I kept seeing the same thing: companies cut the manager, the team drifts, the founder becomes the de facto coach. There's a better way.</p>
+      </div>
+      <div>
+        <ul class="cred-list">
+          <li><span class="cred-dot">—</span>20+ years B2B sales leadership</li>
+          <li><span class="cred-dot">—</span>Fox News Digital · Thrillist · Macy's Media Network · Uproxx</li>
+          <li><span class="cred-dot">—</span>MBA + M.S. Industrial-Organizational Psychology</li>
+          <li><span class="cred-dot">—</span>ProPresence EI coaching framework — developed and tested with sales teams</li>
+          <li><span class="cred-dot">—</span>Specialized in SMB and founder-led sales organizations</li>
+          <li><span class="cred-dot">—</span>Built for teams of 3–15 sellers without a dedicated manager</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <p class="section-tag" style="color:var(--gold);">Ready?</p>
+  <h2 class="section-title">Your team is one consistent manager away from a different year.</h2>
+  <p class="section-body">Book a 30-minute call. We'll talk through what's getting in the way of your number and whether The Floor is the right fit. No pitch deck. No obligation.</p>
+  <div class="cta-btn-wrap">
+    <a href="https://calendly.com/jeff-lfsm" target="_blank" class="btn-primary" style="font-size:0.95rem; padding:1rem 2.5rem;">Book a 30-min call</a>
+  </div>
+  <p class="cta-note">No pitch deck. No obligation. Just a conversation about your team.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">The Floor</span>
+  <span>Fractional sales management for growing teams.</span>
+  <span>© 2026 The Floor</span>
+</footer>
+
+<script>
+  const items = document.querySelectorAll('.tl-item');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 120);
+      }
+    });
+  }, { threshold: 0.15 });
+  items.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
