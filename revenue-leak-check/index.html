@@ -1,1 +1,394 @@
-dsafadsf
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Revenue Leak Check | The Floor</title>
+<meta name="description" content="A quick founder-led B2B revenue diagnostic: 12 places revenue quietly gets lost before you spend more money generating demand." />
+<link rel="canonical" href="https://floor.earnedtalent.com/revenue-leak-check/" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="The Revenue Leak Check | The Floor" />
+<meta property="og:description" content="12 places founder-led companies quietly lose revenue." />
+<meta property="og:url" content="https://floor.earnedtalent.com/revenue-leak-check/" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital@1&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --ink:#211D1A;
+  --paper:#F6F1E9;
+  --white:#FFFFFF;
+  --stone:#6B645C;
+  --line:#DDD4C4;
+  --rust:#8C4A32;
+  --surface:#EFE7D8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+.container{max-width:1120px;margin:0 auto;padding:0 1.75rem}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+img{max-width:100%;display:block}
+
+h1,h2,h3{font-weight:800;letter-spacing:-0.01em;line-height:1.12}
+h1{font-size:clamp(2.3rem,5vw,3.6rem)}
+h2{font-size:clamp(1.6rem,3vw,2.2rem)}
+h3{font-size:1.05rem;font-weight:700}
+
+.eyebrow{font-size:.72rem;text-transform:uppercase;letter-spacing:.11em;color:var(--rust);font-weight:700;margin-bottom:.9rem}
+
+/* NAV */
+nav{border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--paper);z-index:50}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.75rem}
+.nav-logo{font-weight:800;font-size:1.05rem;letter-spacing:-0.01em}
+.nav-links{display:flex;align-items:center;gap:1.6rem;list-style:none}
+.nav-links a{font-size:.85rem;font-weight:600;color:var(--stone)}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{background:var(--ink);color:var(--paper)!important;padding:.55rem 1.1rem;border-radius:3px;font-weight:700!important}
+.nav-cta:hover{background:var(--rust)}
+@media(max-width:860px){.nav-links li:not(:last-child){display:none}}
+
+/* BUTTONS */
+.btn{display:inline-block;padding:.85rem 1.5rem;border-radius:3px;font-weight:700;font-size:.92rem;border:1px solid transparent}
+.btn-primary{background:var(--ink);color:var(--paper)}
+.btn-primary:hover{background:var(--rust)}
+.btn-secondary{border-color:var(--ink);color:var(--ink)}
+.btn-secondary:hover{border-color:var(--rust);color:var(--rust)}
+.btn-row{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin-top:2rem}
+.btn-row .text-link{font-weight:700;font-size:.92rem;border-bottom:1px solid var(--rust);color:var(--rust);padding-bottom:2px}
+
+section{padding:4.5rem 0}
+.rule-top{border-top:1px solid var(--line)}
+.surface{background:var(--surface)}
+.dark{background:var(--ink);color:var(--paper)}
+.dark .eyebrow{color:#C88361}
+.dark .stone-txt{color:#B8AFA1}
+
+/* HERO */
+.hero{padding:5.5rem 0 4rem}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:3.5rem;align-items:start}
+.hero h1{max-width:640px}
+.hero-lead{font-size:1.15rem;color:var(--ink);margin-top:1.4rem;max-width:560px;font-weight:500}
+.hero-sub{font-size:1rem;color:var(--stone);margin-top:.9rem;max-width:560px;line-height:1.7}
+.diagnostic{border-left:3px solid var(--rust);padding:1.5rem 1.75rem;background:var(--white)}
+.diagnostic h3{font-size:1rem;margin-bottom:1rem}
+.diagnostic ul{display:grid;gap:.65rem}
+.diagnostic li{font-size:.9rem;color:var(--stone);padding-left:1rem;position:relative;line-height:1.55}
+.diagnostic li:before{content:'—';position:absolute;left:0;color:var(--rust)}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr}}
+
+/* TWO SITUATIONS */
+.situations{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.situation{padding:0 2.5rem}
+.situation:first-child{padding-left:0;border-right:1px solid var(--line)}
+.situation:last-child{padding-right:0}
+.situation h3{font-size:1.25rem;margin-bottom:1rem}
+.situation ul{display:grid;gap:.55rem;margin-bottom:1.1rem}
+.situation li{font-size:.92rem;color:var(--stone);padding-left:1rem;position:relative}
+.situation li:before{content:'·';position:absolute;left:0;color:var(--rust);font-weight:900}
+.situation .callout-line{font-weight:700;font-size:.95rem;margin-top:1rem}
+@media(max-width:860px){.situations{grid-template-columns:1fr;gap:2.5rem}.situation:first-child{border-right:none;border-bottom:1px solid var(--line);padding-bottom:2.5rem}.situation{padding:0}}
+
+/* RESPONSIBILITY LIST */
+.resp-list{display:grid;grid-template-columns:1fr 1fr;column-gap:2.5rem;margin-top:2rem}
+.resp-list li{font-size:.96rem;padding:.85rem 0;border-top:1px solid var(--line);font-weight:600}
+.resp-list li:nth-child(1),.resp-list li:nth-child(2){border-top:none}
+@media(max-width:640px){.resp-list{grid-template-columns:1fr}.resp-list li:nth-child(2){border-top:1px solid var(--line)}}
+.note-line{margin-top:2rem;font-size:.98rem;color:var(--stone);max-width:640px;line-height:1.7}
+
+/* BETWEEN LEADERS */
+.between h2{color:var(--paper);max-width:720px}
+.between .hero-lead{color:var(--paper);font-weight:600}
+.between .stone-txt{max-width:640px;margin-top:1rem;line-height:1.75}
+.between ul{margin-top:1.6rem;display:grid;grid-template-columns:1fr 1fr;column-gap:2rem;row-gap:.6rem}
+.between li{font-size:.9rem;color:#D8CFC1;padding-left:1rem;position:relative}
+.between li:before{content:'—';position:absolute;left:0;color:#C88361}
+@media(max-width:640px){.between ul{grid-template-columns:1fr}}
+
+/* GAP SECTION */
+.gap-def{font-size:1.15rem;line-height:1.7;max-width:760px;font-weight:500;margin-top:.5rem}
+.gap-body{margin-top:1.2rem;color:var(--stone);max-width:680px;line-height:1.75;font-size:.98rem}
+
+/* FLOOR CHECK */
+.check-grid{display:grid;grid-template-columns:auto 1fr;gap:3rem;align-items:start}
+.check-num{font-size:4.2rem;font-weight:800;line-height:1;white-space:nowrap}
+.check-num span{font-size:1.1rem;font-weight:600;color:var(--stone);display:block;margin-top:.4rem}
+.check-list{display:grid;gap:.5rem;margin:1.2rem 0 1.5rem}
+.check-list li{font-size:.92rem;color:var(--stone);padding-left:1rem;position:relative}
+.check-list li:before{content:'—';position:absolute;left:0;color:var(--rust)}
+.honest-note{font-size:.94rem;color:var(--stone);font-style:italic;max-width:620px;margin:1.2rem 0;line-height:1.7}
+.guarantee-line{font-weight:700;font-size:.95rem;border-left:3px solid var(--rust);padding-left:1rem;margin:1.4rem 0 1.8rem}
+@media(max-width:760px){.check-grid{grid-template-columns:1fr}}
+
+/* PRICING / ONGOING */
+.ongoing-amount{font-size:2rem;font-weight:800;margin:.8rem 0 .3rem}
+.ongoing-note{font-size:.88rem;color:var(--stone);margin-bottom:1.6rem}
+
+/* TEAM */
+.team-lead{display:grid;grid-template-columns:1fr;gap:1.2rem;max-width:720px}
+.team-name{font-size:2rem;font-weight:800}
+.team-role{font-size:.85rem;color:var(--rust);font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-top:.2rem;margin-bottom:1.2rem}
+.team-bio p{font-size:1rem;color:var(--stone);line-height:1.75;margin-bottom:1rem}
+.team-bio strong{color:var(--ink)}
+.cred-row{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;margin-top:1.3rem;padding-top:1.3rem;border-top:1px solid var(--line)}
+.cred-row span{font-size:.82rem;color:var(--stone);font-weight:600}
+
+/* QUOTE */
+.quote-block{margin-top:3rem;padding-top:3rem;border-top:1px solid var(--line);max-width:760px}
+.quote-block p{font-family:'Source Serif 4',Georgia,serif;font-style:italic;font-size:1.35rem;line-height:1.6;color:var(--ink)}
+.quote-attr{margin-top:1.2rem;font-weight:700;font-size:.9rem}
+.quote-role{font-size:.85rem;color:var(--stone)}
+
+.support-line{margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--line);font-size:.92rem;color:var(--stone);max-width:600px;line-height:1.7}
+
+/* FINAL CTA */
+.final-cta{text-align:left}
+.final-cta h2{max-width:560px}
+.final-cta p{color:var(--stone);margin-top:1rem;max-width:520px;font-size:1rem}
+
+footer{border-top:1px solid var(--line);padding:2.2rem 0}
+.footer-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.82rem;color:var(--stone)}
+.footer-logo{font-weight:800;color:var(--ink)}
+
+@media(max-width:640px){section{padding:3rem 0}.check-grid{gap:1.5rem}}
+
+:root{
+  --ink:#211D1A;--paper:#F6F1E9;--white:#FFFFFF;--stone:#6B645C;
+  --line:#DDD4C4;--rust:#8C4A32;--surface:#EFE7D8;
+}
+.nav-logo img{height:34px;width:auto;display:block}
+.audit-hero{padding:5rem 0 3.5rem}
+.audit-hero h1{font-size:clamp(2.8rem,5.5vw,5rem);line-height:1;letter-spacing:-.04em;max-width:900px}
+.audit-lead{font-size:1.15rem;line-height:1.65;max-width:760px;margin-top:1.25rem;color:var(--stone)}
+.audit-note{margin-top:1rem;font-weight:700}
+.audit-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:2rem}
+.audit-card{background:var(--white);padding:1.5rem}
+.audit-card .num{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--rust);font-weight:800}
+.audit-card h3{font-size:1.15rem;margin-top:.4rem}
+.audit-card p{color:var(--stone);font-size:.94rem;line-height:1.65;margin-top:.55rem}
+.choices{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+.choice{border:1px solid var(--line);background:var(--paper);padding:.45rem .65rem;font-size:.8rem;font-weight:700}
+.score-box{background:var(--ink);color:var(--paper);padding:2rem;margin-top:2.5rem}
+.score-box h2{color:var(--paper)}
+.score-box p{color:#D8CFC1;line-height:1.7;margin-top:.8rem}
+.score-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.5rem}
+.score-tier{border:1px solid rgba(255,255,255,.18);padding:1rem}
+.score-tier strong{display:block;margin-bottom:.4rem}
+.score-tier span{font-size:.86rem;color:#D8CFC1;line-height:1.55}
+.cta-panel{background:var(--rust);color:#fff;padding:2.5rem;margin-top:2rem}
+.cta-panel h2{color:#fff}
+.cta-panel p{color:#F5EAE5;line-height:1.7;max-width:700px;margin-top:.8rem}
+.cta-panel .btn-primary{background:#fff;color:var(--ink)}
+@media(max-width:800px){.audit-grid,.score-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+<div class="container nav-inner">
+<a class="nav-logo" href="/"><img src="/images/logo-nav.png" alt="The Floor" /></a>
+<ul class="nav-links">
+<li><a href="/revenue-build/">Revenue Build</a></li>
+<li><a href="/sales-management/">Sales Management</a></li>
+<li><a href="/insights/">Insights</a></li>
+<li><a class="nav-cta" href="https://calendly.com/jeff-lfsm">Talk With Jeff</a></li>
+</ul>
+</div>
+</nav>
+
+<main>
+<section class="audit-hero">
+<div class="container">
+<div class="eyebrow">The Floor / Founder diagnostic</div>
+<h1>The Revenue Leak Check</h1>
+<p class="audit-lead">12 places founder-led companies quietly lose revenue.</p>
+<p class="audit-lead">Most companies assume they need more leads. Sometimes they do. But before spending more money to create demand, it is worth checking whether revenue is already leaking out of the business.</p>
+<p class="audit-note">This is not a formal assessment. It is a quick gut check.</p>
+<div class="btn-row"><a class="btn btn-primary" href="#check">Start the check</a></div>
+</div>
+</section>
+
+<section class="surface rule-top" id="check">
+<div class="container">
+<div class="eyebrow">For each one, pick what feels true</div>
+<h2>No issue. Sometimes. Yep, this is us.</h2>
+<div class="audit-grid">
+
+    <div class="audit-card">
+      <div class="num">01</div>
+      <h3>Deals are sitting around</h3>
+      <p>How many deals are in the pipeline right now that everybody knows probably are not moving? If there is no clear next step, date or owner, they are not really pipeline. They are clutter.</p>
+      <div class="choices">
+        <span class="choice">No issue</span>
+        <span class="choice">Sometimes</span>
+        <span class="choice">Yep, this is us</span>
+      </div>
+    </div>
+    
+
+    <div class="audit-card">
+      <div class="num">02</div>
+      <h3>Old customers have gone quiet</h3>
+      <p>Do you have former customers nobody has meaningfully reached back out to in the last 6–12 months? There is often easier revenue sitting in old relationships than in brand-new leads.</p>
+      <div class="choices">
+        <span class="choice">No issue</span>
+        <span class="choice">Sometimes</span>
+        <span class="choice">Yep, this is us</span>
+      </div>
+    </div>
+    
+
+    <div class="audit-card">
+      <div class="num">03</div>
+      <h3>Good customers could be buying more</h3>
+      <p>Do you have current customers who probably have more needs than what they buy from you today? If nobody owns cross-sell or account growth, those opportunities usually sit there.</p>
+      <div class="choices">
+        <span class="choice">No issue</span>
+        <span class="choice">Sometimes</span>
+        <span class="choice">Yep, this is us</span>
+      </div>
+    </div>
+    
+
+    <div class="audit-card">
+      <div class="num">04</div>
+      <h3>Follow-up is inconsistent</h3>
+      <p>Does follow-up depend too much on people remembering what they said they would do? A lot of revenue dies because nobody followed up at the right time.</p>
+      <div class="choices">
+        <span class="choice">No issue</span>
+        <span class="choice">Sometimes</span>
+        <span class="choice">Yep, this is us</span>
+      </div>
+    </div>
+    
+
+    <div class="audit-card">
+      <div class="num">05</div>
+      <h3>The founder is still in too many deals</h3>
+      <p>Do too many important opportunities still need the founder to step in, rescue them, approve them or close them? That works for a while. Then it becomes a bottleneck.</p>
+      <div class="choices">
+        <span class="choice">No issue</span>
+        <span class="choice">Sometimes</span>
+        <span class="choice">Yep, this is us</span>
+      </div>
+    </div>
+    
+
+    <div class="audit-card">
+      <div class="num">06</div>
+      <h3>The sales team is active, but not really managed</h3>
+      <p>Are people selling, but nobody is consistently running pipeline, priorities, coaching, accountability and next actions? Activity is not the same as management.</p>
+      <div class="choices">
+        <span class="choice">No issue</span>
+        <span class="choice">Sometimes</span>
+        <span class="choice">Yep, this is us</span>
+      </div>
+    </div>
+    
+
+    <div class="audit-card">
+      <div class="num">07</div>
+      <h3>Nobody really trusts the pipeline</h3>
+      <p>Can you quickly tell which deals are likely to close and which ones are fantasy? If not, the company may be spending too much time on the wrong opportunities.</p>
+      <div class="choices">
+        <span class="choice">No issue</span>
+        <span class="choice">Sometimes</span>
+        <span class="choice">Yep, this is us</span>
+      </div>
+    </div>
+    
+
+    <div class="audit-card">
+      <div class="num">08</div>
+      <h3>Partnerships get talked about more than pursued</h3>
+      <p>Do you have potential referral partners, channel partners, distributors or strategic relationships that never really go anywhere? If everybody owns partnerships, usually nobody owns partnerships.</p>
+      <div class="choices">
+        <span class="choice">No issue</span>
+        <span class="choice">Sometimes</span>
+        <span class="choice">Yep, this is us</span>
+      </div>
+    </div>
+    
+
+    <div class="audit-card">
+      <div class="num">09</div>
+      <h3>Good revenue ideas never get launched</h3>
+      <p>Do you talk about new offers, packages, services, sponsorships, products or ways to monetize what you already have — and then nothing happens?</p>
+      <div class="choices">
+        <span class="choice">No issue</span>
+        <span class="choice">Sometimes</span>
+        <span class="choice">Yep, this is us</span>
+      </div>
+    </div>
+    
+
+    <div class="audit-card">
+      <div class="num">10</div>
+      <h3>There are obvious buyers nobody is going after</h3>
+      <p>Are there customer types, industries, geographies or buyer groups you could probably sell to that nobody has really pursued?</p>
+      <div class="choices">
+        <span class="choice">No issue</span>
+        <span class="choice">Sometimes</span>
+        <span class="choice">Yep, this is us</span>
+      </div>
+    </div>
+    
+
+    <div class="audit-card">
+      <div class="num">11</div>
+      <h3>Pricing and packaging have not changed in forever</h3>
+      <p>Are you selling roughly the same way you always have? Sometimes the opportunity is not more volume. It is a better package, better structure, better pricing or a clearer reason to buy.</p>
+      <div class="choices">
+        <span class="choice">No issue</span>
+        <span class="choice">Sometimes</span>
+        <span class="choice">Yep, this is us</span>
+      </div>
+    </div>
+    
+
+    <div class="audit-card">
+      <div class="num">12</div>
+      <h3>AI got added before the sales process got fixed</h3>
+      <p>Are AI tools being dropped into the business without anyone first deciding what humans should own, what machines should own and how the work actually gets done?</p>
+      <div class="choices">
+        <span class="choice">No issue</span>
+        <span class="choice">Sometimes</span>
+        <span class="choice">Yep, this is us</span>
+      </div>
+    </div>
+    
+</div>
+
+<div class="score-box">
+<h2>So, what did you find?</h2>
+<p>If you checked “Yep, this is us” more than a few times, the problem may not be lead volume. It may be that nobody is really owning the whole revenue picture.</p>
+<div class="score-grid">
+<div class="score-tier"><strong>Mostly “No issue”</strong><span>Your commercial operation may be healthier than you think. Look for one or two isolated leaks rather than rebuilding everything.</span></div>
+<div class="score-tier"><strong>A lot of “Sometimes”</strong><span>You probably have inconsistent execution. These are the places where revenue quietly gets lost over time.</span></div>
+<div class="score-tier"><strong>Several “Yep, this is us”</strong><span>You may not need more leads first. You may need someone to get inside the business and start moving what is already there.</span></div>
+</div>
+</div>
+
+<div class="cta-panel">
+<div class="eyebrow" style="color:#F1C2A8">What The Floor does</div>
+<h2>Want a second set of eyes on it?</h2>
+<p>The Floor gets inside founder-led companies, figures out what is real, finds the revenue being missed, and starts moving the best opportunities.</p>
+<p><strong>30-Day Revenue Build — $5,000 fixed fee. 30 days. No long-term commitment.</strong></p>
+<div class="btn-row">
+<a class="btn btn-primary" href="/revenue-build/">See the 30-Day Revenue Build</a>
+<a class="text-link" style="color:#fff;border-color:rgba(255,255,255,.6)" href="https://calendly.com/jeff-lfsm">Book 20 minutes with Jeff</a>
+</div>
+</div>
+
+</div>
+</section>
+</main>
+
+<footer>
+<div class="container footer-inner">
+<span><img src="/images/logo-nav.png" alt="The Floor" style="height:30px;width:auto"></span>
+<span>Commercial leadership for founder-led B2B companies. &copy; 2026 The Floor.</span>
+</div>
+</footer>
+</body>
+</html>
