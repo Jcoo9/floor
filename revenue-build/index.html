@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>30-Day Revenue Build | The Floor</title>
+<meta name="description" content="The Floor helps founder-led companies find stalled and missed revenue and start moving the best opportunities in 30 days." />
+<link rel="canonical" href="https://floor.earnedtalent.com/revenue-build/" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="30-Day Revenue Build | The Floor" />
+<meta property="og:description" content="The Floor helps founder-led companies find stalled and missed revenue and start moving the best opportunities in 30 days." />
+<meta property="og:url" content="https://floor.earnedtalent.com/revenue-build/" />
+<meta name="twitter:card" content="summary" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital@1&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --ink:#211D1A;
+  --paper:#F6F1E9;
+  --white:#FFFFFF;
+  --stone:#6B645C;
+  --line:#DDD4C4;
+  --rust:#8C4A32;
+  --surface:#EFE7D8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+.container{max-width:1120px;margin:0 auto;padding:0 1.75rem}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+img{max-width:100%;display:block}
+
+h1,h2,h3{font-weight:800;letter-spacing:-0.01em;line-height:1.12}
+h1{font-size:clamp(2.3rem,5vw,3.6rem)}
+h2{font-size:clamp(1.6rem,3vw,2.2rem)}
+h3{font-size:1.05rem;font-weight:700}
+
+.eyebrow{font-size:.72rem;text-transform:uppercase;letter-spacing:.11em;color:var(--rust);font-weight:700;margin-bottom:.9rem}
+
+/* NAV */
+nav{border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--paper);z-index:50}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.75rem}
+.nav-logo{font-weight:800;font-size:1.05rem;letter-spacing:-0.01em}
+.nav-links{display:flex;align-items:center;gap:1.6rem;list-style:none}
+.nav-links a{font-size:.85rem;font-weight:600;color:var(--stone)}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{background:var(--ink);color:var(--paper)!important;padding:.55rem 1.1rem;border-radius:3px;font-weight:700!important}
+.nav-cta:hover{background:var(--rust)}
+@media(max-width:860px){.nav-links li:not(:last-child){display:none}}
+
+/* BUTTONS */
+.btn{display:inline-block;padding:.85rem 1.5rem;border-radius:3px;font-weight:700;font-size:.92rem;border:1px solid transparent}
+.btn-primary{background:var(--ink);color:var(--paper)}
+.btn-primary:hover{background:var(--rust)}
+.btn-secondary{border-color:var(--ink);color:var(--ink)}
+.btn-secondary:hover{border-color:var(--rust);color:var(--rust)}
+.btn-row{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin-top:2rem}
+.btn-row .text-link{font-weight:700;font-size:.92rem;border-bottom:1px solid var(--rust);color:var(--rust);padding-bottom:2px}
+
+section{padding:4.5rem 0}
+.rule-top{border-top:1px solid var(--line)}
+.surface{background:var(--surface)}
+.dark{background:var(--ink);color:var(--paper)}
+.dark .eyebrow{color:#C88361}
+.dark .stone-txt{color:#B8AFA1}
+
+/* HERO */
+.hero{padding:5.5rem 0 4rem}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:3.5rem;align-items:start}
+.hero h1{max-width:640px}
+.hero-lead{font-size:1.15rem;color:var(--ink);margin-top:1.4rem;max-width:560px;font-weight:500}
+.hero-sub{font-size:1rem;color:var(--stone);margin-top:.9rem;max-width:560px;line-height:1.7}
+.diagnostic{border-left:3px solid var(--rust);padding:1.5rem 1.75rem;background:var(--white)}
+.diagnostic h3{font-size:1rem;margin-bottom:1rem}
+.diagnostic ul{display:grid;gap:.65rem}
+.diagnostic li{font-size:.9rem;color:var(--stone);padding-left:1rem;position:relative;line-height:1.55}
+.diagnostic li:before{content:'—';position:absolute;left:0;color:var(--rust)}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr}}
+
+/* TWO SITUATIONS */
+.situations{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.situation{padding:0 2.5rem}
+.situation:first-child{padding-left:0;border-right:1px solid var(--line)}
+.situation:last-child{padding-right:0}
+.situation h3{font-size:1.25rem;margin-bottom:1rem}
+.situation ul{display:grid;gap:.55rem;margin-bottom:1.1rem}
+.situation li{font-size:.92rem;color:var(--stone);padding-left:1rem;position:relative}
+.situation li:before{content:'·';position:absolute;left:0;color:var(--rust);font-weight:900}
+.situation .callout-line{font-weight:700;font-size:.95rem;margin-top:1rem}
+@media(max-width:860px){.situations{grid-template-columns:1fr;gap:2.5rem}.situation:first-child{border-right:none;border-bottom:1px solid var(--line);padding-bottom:2.5rem}.situation{padding:0}}
+
+/* RESPONSIBILITY LIST */
+.resp-list{display:grid;grid-template-columns:1fr 1fr;column-gap:2.5rem;margin-top:2rem}
+.resp-list li{font-size:.96rem;padding:.85rem 0;border-top:1px solid var(--line);font-weight:600}
+.resp-list li:nth-child(1),.resp-list li:nth-child(2){border-top:none}
+@media(max-width:640px){.resp-list{grid-template-columns:1fr}.resp-list li:nth-child(2){border-top:1px solid var(--line)}}
+.note-line{margin-top:2rem;font-size:.98rem;color:var(--stone);max-width:640px;line-height:1.7}
+
+/* BETWEEN LEADERS */
+.between h2{color:var(--paper);max-width:720px}
+.between .hero-lead{color:var(--paper);font-weight:600}
+.between .stone-txt{max-width:640px;margin-top:1rem;line-height:1.75}
+.between ul{margin-top:1.6rem;display:grid;grid-template-columns:1fr 1fr;column-gap:2rem;row-gap:.6rem}
+.between li{font-size:.9rem;color:#D8CFC1;padding-left:1rem;position:relative}
+.between li:before{content:'—';position:absolute;left:0;color:#C88361}
+@media(max-width:640px){.between ul{grid-template-columns:1fr}}
+
+/* GAP SECTION */
+.gap-def{font-size:1.15rem;line-height:1.7;max-width:760px;font-weight:500;margin-top:.5rem}
+.gap-body{margin-top:1.2rem;color:var(--stone);max-width:680px;line-height:1.75;font-size:.98rem}
+
+/* FLOOR CHECK */
+.check-grid{display:grid;grid-template-columns:auto 1fr;gap:3rem;align-items:start}
+.check-num{font-size:4.2rem;font-weight:800;line-height:1;white-space:nowrap}
+.check-num span{font-size:1.1rem;font-weight:600;color:var(--stone);display:block;margin-top:.4rem}
+.check-list{display:grid;gap:.5rem;margin:1.2rem 0 1.5rem}
+.check-list li{font-size:.92rem;color:var(--stone);padding-left:1rem;position:relative}
+.check-list li:before{content:'—';position:absolute;left:0;color:var(--rust)}
+.honest-note{font-size:.94rem;color:var(--stone);font-style:italic;max-width:620px;margin:1.2rem 0;line-height:1.7}
+.guarantee-line{font-weight:700;font-size:.95rem;border-left:3px solid var(--rust);padding-left:1rem;margin:1.4rem 0 1.8rem}
+@media(max-width:760px){.check-grid{grid-template-columns:1fr}}
+
+/* PRICING / ONGOING */
+.ongoing-amount{font-size:2rem;font-weight:800;margin:.8rem 0 .3rem}
+.ongoing-note{font-size:.88rem;color:var(--stone);margin-bottom:1.6rem}
+
+/* TEAM */
+.team-lead{display:grid;grid-template-columns:1fr;gap:1.2rem;max-width:720px}
+.team-name{font-size:2rem;font-weight:800}
+.team-role{font-size:.85rem;color:var(--rust);font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-top:.2rem;margin-bottom:1.2rem}
+.team-bio p{font-size:1rem;color:var(--stone);line-height:1.75;margin-bottom:1rem}
+.team-bio strong{color:var(--ink)}
+.cred-row{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;margin-top:1.3rem;padding-top:1.3rem;border-top:1px solid var(--line)}
+.cred-row span{font-size:.82rem;color:var(--stone);font-weight:600}
+
+/* QUOTE */
+.quote-block{margin-top:3rem;padding-top:3rem;border-top:1px solid var(--line);max-width:760px}
+.quote-block p{font-family:'Source Serif 4',Georgia,serif;font-style:italic;font-size:1.35rem;line-height:1.6;color:var(--ink)}
+.quote-attr{margin-top:1.2rem;font-weight:700;font-size:.9rem}
+.quote-role{font-size:.85rem;color:var(--stone)}
+
+.support-line{margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--line);font-size:.92rem;color:var(--stone);max-width:600px;line-height:1.7}
+
+/* FINAL CTA */
+.final-cta{text-align:left}
+.final-cta h2{max-width:560px}
+.final-cta p{color:var(--stone);margin-top:1rem;max-width:520px;font-size:1rem}
+
+footer{border-top:1px solid var(--line);padding:2.2rem 0}
+.footer-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.82rem;color:var(--stone)}
+.footer-logo{font-weight:800;color:var(--ink)}
+
+@media(max-width:640px){section{padding:3rem 0}.check-grid{gap:1.5rem}}
+
+/* LANDING PAGE ADDITIONS */
+.lp-hero{padding:5.5rem 0 4.5rem}
+.lp-hero h1{max-width:760px}
+.lp-hero .hero-lead{max-width:720px}
+.lp-band{background:var(--ink);color:var(--paper)}
+.lp-band h2{max-width:760px}
+.lp-band p{color:#D8CFC1;max-width:700px;margin-top:1rem;line-height:1.75}
+.lp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:2.25rem}
+.lp-card{background:var(--white);padding:1.5rem;border:1px solid var(--line)}
+.lp-card .num{font-size:.72rem;font-weight:800;color:var(--rust);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.7rem}
+.lp-card h3{font-size:1.15rem;margin-bottom:.7rem}
+.lp-card p{color:var(--stone);font-size:.94rem;line-height:1.65}
+.lp-bullets{display:grid;grid-template-columns:1fr 1fr;column-gap:2rem;margin-top:1.8rem}
+.lp-bullets li{padding:.75rem 0;border-top:1px solid var(--line);font-size:.95rem;color:var(--stone)}
+.lp-bullets li:before{content:'—';color:var(--rust);margin-right:.6rem}
+.lp-price{font-size:3rem;font-weight:800;letter-spacing:-.03em;margin:.6rem 0}
+.lp-small{font-size:.9rem;color:var(--stone)}
+.lp-center{max-width:760px}
+.lp-kicker{font-size:1.2rem;font-weight:700;line-height:1.55;max-width:720px;margin-top:1rem}
+@media(max-width:860px){.lp-grid{grid-template-columns:1fr}.lp-bullets{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+<div class="container nav-inner">
+<a class="nav-logo" href="/">The Floor</a>
+<ul class="nav-links">
+<li><a href="/#problem">The problem</a></li>
+<li><a href="/insights/">Insights</a></li>
+<li><a href="/revenue-build/">Revenue Build</a></li>
+<li><a class="nav-cta" href="https://calendly.com/jeff-lfsm">Book 20 Minutes</a></li>
+</ul>
+</div>
+</nav>
+
+<main id="top">
+<section class="lp-hero">
+<div class="container">
+<div class="eyebrow">The Floor / 30-Day Revenue Build</div>
+<h1>Revenue should be growing faster than it is.</h1>
+<p class="hero-lead">You have customers. Prospects. People working. A pipeline. But there may be more revenue inside the business than you are actually capturing.</p>
+<p class="hero-sub">The Floor gets inside the revenue operation, figures out what is real, finds what is being missed, and starts moving the best opportunities.</p>
+<div class="btn-row">
+<a class="btn btn-primary" href="https://calendly.com/jeff-lfsm">Book a 20-Minute Conversation</a>
+</div>
+</div>
+</section>
+
+<section class="surface rule-top">
+<div class="container">
+<div class="eyebrow">What we usually find</div>
+<h2>The problem is often not a lack of activity.</h2>
+<ul class="lp-bullets"><li>Deals stall and nobody pushes them forward</li>
+<li>Former customers disappear from view</li>
+<li>Good accounts are never fully developed</li>
+<li>Partnership opportunities get discussed but never owned</li>
+<li>New offers or revenue products never get launched</li>
+<li>The founder still carries too much of the commercial operation</li>
+<li>Salespeople spend time on opportunities that were never very real</li>
+<li>Everyone is busy, but revenue still feels inconsistent</li></ul>
+</div>
+</section>
+
+<section class="rule-top">
+<div class="container">
+<div class="eyebrow">The 30-Day Revenue Build</div>
+<h2>In 30 days, we do three things.</h2>
+<div class="lp-grid"><div class="lp-card"><div class="num">01</div><h3>Figure out what is real</h3><p>We review the pipeline, customers, prospects, offers and sales activity to identify what is likely to close, what is stalled, what is dead and where attention should go now.</p></div>
+<div class="lp-card"><div class="num">02</div><h3>Find the revenue being missed</h3><p>We look for dormant customers, underworked accounts, cross-sell, new buyer groups, partnerships, new offers, new revenue products and other realistic opportunities the business is not fully capturing.</p></div>
+<div class="lp-card"><div class="num">03</div><h3>Start moving the best opportunities</h3><p>We begin executing during the month — reactivating accounts, pursuing partnerships, opening target markets, improving follow-up, creating offers or tightening sales management.</p></div></div>
+</div>
+</section>
+
+<section class="lp-band rule-top">
+<div class="container">
+<div class="eyebrow">Not another study</div>
+<h2>We start moving revenue during the engagement.</h2>
+<p>The Floor is not a strategy deck, CRM cleanup project or AI workshop. We get inside the commercial operation, identify the highest-priority opportunities and begin acting on them while the work is underway.</p>
+</div>
+</section>
+
+<section class="rule-top">
+<div class="container">
+<div class="eyebrow">What you have after 30 days</div>
+<h2>A clearer revenue picture — and the first moves already underway.</h2>
+<ul class="lp-bullets"><li>A cleaner picture of what is likely to produce revenue</li>
+<li>Stalled and missed opportunities identified</li>
+<li>Clear commercial priorities</li>
+<li>The highest-value opportunities already in motion</li>
+<li>A concrete view of what should happen next</li>
+<li>No obligation to continue after the 30 days</li></ul>
+</div>
+</section>
+
+<section class="surface rule-top">
+<div class="container lp-center">
+<div class="eyebrow">Investment</div>
+<div class="lp-price">$5,000</div>
+<p class="lp-kicker">30 days. Fixed fee. No long-term commitment.</p>
+<p class="hero-sub">At the end, you can take the work and run with it. Or, if there is enough opportunity, The Floor can stay involved and help operate what we started.</p>
+<div class="btn-row">
+<a class="btn btn-primary" href="https://calendly.com/jeff-lfsm">Book a 20-Minute Conversation</a>
+</div>
+</div>
+</section>
+
+<section class="rule-top">
+<div class="container final-cta">
+<h2>There may be more revenue inside your company than you think.</h2>
+<p>The first job is to find it. The second is to start moving it.</p>
+<div class="btn-row"><a class="btn btn-primary" href="https://calendly.com/jeff-lfsm">Talk With Jeff</a></div>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="container footer-inner">
+<span class="footer-logo">The Floor</span>
+<span>Commercial leadership for founder-led B2B companies. &copy; 2026 The Floor.</span>
+</div>
+</footer>
+</body>
+</html>
