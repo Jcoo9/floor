@@ -270,11 +270,16 @@ body{overflow-x:hidden}
 .offer-card li{padding:.45rem 0;border-top:1px solid var(--line);font-size:.88rem}
 .offer-card .btn-row{margin-top:auto;padding-top:1.2rem}
 
-.about-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:3rem;align-items:center}
-.about-photo{width:100%;aspect-ratio:4/5;object-fit:cover;box-shadow:var(--shadow)}
+.about-grid{display:grid;grid-template-columns:1fr;gap:2rem}
+.about-copy{max-width:900px}
 .about-copy p{color:var(--stone);line-height:1.75;margin-top:.8rem}
-.credentials{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.2rem}
+.about-proof{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:2rem}
+.about-proof-card{background:var(--white);padding:1.5rem}
+.about-proof-card strong{display:block;font-size:1.05rem;margin-bottom:.45rem}
+.about-proof-card p{font-size:.9rem;color:var(--stone);line-height:1.6;margin:0}
+.credentials{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.4rem}
 .credential{border:1px solid var(--line);padding:.55rem .7rem;font-size:.8rem;background:var(--white)}
+@media(max-width:800px){.about-proof{grid-template-columns:1fr}}
 
 .quote-big{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(1.45rem,2.4vw,2rem);font-style:italic;line-height:1.55;max-width:900px}
 .quote-meta{margin-top:1rem;font-size:.9rem;color:var(--stone)}
@@ -286,7 +291,7 @@ body{overflow-x:hidden}
 .final-panel .text-link{color:#fff;border-color:rgba(255,255,255,.5)}
 
 @media(max-width:980px){
-  .hero-wrap,.build-shell,.wedge-grid,.about-grid{grid-template-columns:1fr}
+  .hero-wrap,.build-shell,.wedge-grid{grid-template-columns:1fr}
   .hero-visual{max-width:680px}
   .floating-card{left:1rem}
   .proof-grid{grid-template-columns:1fr 1fr}
@@ -555,19 +560,32 @@ body{overflow-x:hidden}
 
 <section class="surface rule-top" id="about">
 <div class="container about-grid">
-<div>
-<img class="about-photo" src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1000&q=80" alt="Business leader in a working session" />
-</div>
 <div class="about-copy">
 <div class="eyebrow">Who's running it</div>
 <h2>Jeff Cohen</h2>
 <p><strong>Founder, The Floor</strong></p>
-<p>Jeff has spent more than 20 years in B2B sales leadership across Fox News Digital, Thrillist, Macy's Media Network, American Media and Uproxx. More than 20 people he managed or coached went on to become VPs or heads of sales.</p>
-<p>He has also operated inside founder-led businesses as a COO, where the job extends beyond managing sellers: building offers, partnerships, operating cadence, new revenue lines and the infrastructure around growth.</p>
-<p>Jeff holds an MBA and an M.S. in Industrial-Organizational Psychology. That background shapes how he coaches different personalities, builds accountability, changes behavior and manages performance.</p>
+<p>Jeff has spent more than 20 years leading B2B sales and commercial teams across Fox News Digital, Thrillist, Macy's Media Network, American Media and Uproxx. More than 20 people he managed or coached went on to become VPs or heads of sales.</p>
+<p>He has also worked inside founder-led businesses as a COO — building offers, partnerships, operating cadence, new revenue lines and the infrastructure around growth. The Floor combines both sides of that experience: managing the people responsible for revenue and building the commercial system around them.</p>
+
+<div class="about-proof">
+<div class="about-proof-card">
+<strong>Sales leadership</strong>
+<p>Pipeline, coaching, accountability, forecasting, deal strategy and team performance.</p>
+</div>
+<div class="about-proof-card">
+<strong>Operator experience</strong>
+<p>Offers, partnerships, pricing, new revenue streams and the systems needed to support growth.</p>
+</div>
+<div class="about-proof-card">
+<strong>Management depth</strong>
+<p>MBA plus an M.S. in Industrial-Organizational Psychology applied to real teams, behavior and performance.</p>
+</div>
+</div>
+
 <div class="credentials">
 <span class="credential">20+ years B2B sales leadership</span>
 <span class="credential">COO / operator experience</span>
+<span class="credential">20+ future VPs / Heads of Sales coached or managed</span>
 <span class="credential">MBA</span>
 <span class="credential">M.S. Industrial-Organizational Psychology</span>
 </div>
