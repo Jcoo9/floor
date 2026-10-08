@@ -12,7 +12,7 @@
 <style>
 :root{
   --ink:#111318;--paper:#F6F1E9;--white:#fff;--stone:#675F59;--line:#DDD4C4;
-  --rust:#C4572A;--surface:#EFE7D8;--dark:#111318;
+  --rust:#A48652;--surface:#EFE7D8;--dark:#111318;
 }
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--paper);color:var(--ink);line-height:1.55}
 a{color:inherit;text-decoration:none}.container{max-width:1080px;margin:0 auto;padding:0 24px}
@@ -43,6 +43,33 @@ h1{font-size:clamp(42px,7vw,72px);line-height:.98;letter-spacing:-.04em;margin:1
 .card h3{margin:6px 0}.price{font-size:26px;font-weight:800}.card p{color:var(--stone);font-size:14px}
 footer{background:var(--dark);color:#C9C1BA;padding:26px 0;font-size:13px}footer img{height:38px;width:auto}
 @media(max-width:760px){.choices,.ladder-grid{grid-template-columns:1fr}.hero{padding-top:42px}.question{padding:20px}.nav a:not(.cta){display:none}}
+
+/* ===== PREMIUM OPERATOR VISUAL SYSTEM ===== */
+:root{
+  --ink:#121416;
+  --paper:#F3F0E9;
+  --white:#FFFFFF;
+  --stone:#686762;
+  --line:#D7D1C6;
+  --rust:#A48652;
+  --rust-dark:#7E663E;
+  --surface:#EAE5DC;
+  --charcoal:#1B1E20;
+  --soft:#F8F6F1;
+}
+body{background:var(--paper);color:var(--ink)}
+nav,.topbar,.site-header{background:rgba(243,240,233,.96)!important;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-color:var(--line)!important}
+.brand img,.nav-logo img{height:34px;width:auto;display:block}
+button,.btn,.primary-cta{border-radius:2px!important}
+.btn-primary,.primary-cta,.submit-btn{background:var(--ink)!important;color:var(--paper)!important;border-color:var(--ink)!important}
+.btn-primary:hover,.primary-cta:hover,.submit-btn:hover{background:var(--rust-dark)!important;border-color:var(--rust-dark)!important}
+.eyebrow,.kicker,.mini-label,.question-number,.result-kicker{color:var(--rust-dark)!important}
+.card,.question-card,.result-card,.score-card{box-shadow:none!important;border-color:var(--line)!important}
+.question-card,.card{background:var(--soft)!important}
+.progress-fill,.score-fill{background:var(--rust)!important}
+a.text-link{color:var(--rust-dark)!important}
+footer{background:var(--paper)}
+
 </style>
 </head>
 <body>
