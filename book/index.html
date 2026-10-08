@@ -1,1 +1,142 @@
-adfs
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book a Call | The Floor</title>
+<meta name="description" content="Book a conversation with Jeff Cohen at The Floor.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="canonical" href="https://floor.earnedtalent.com/book/">
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NPTJVDW6Z4"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-NPTJVDW6Z4');
+
+/* Calendly postMessage tracking */
+window.addEventListener('message', function(e) {
+  if (!e.data || !e.data.event) return;
+
+  if (e.data.event === 'calendly.event_scheduled') {
+    gtag('event', 'book_call_complete', {
+      event_category: 'lead',
+      event_label: 'Calendly booking completed',
+      value: 1
+    });
+  }
+
+  if (e.data.event === 'calendly.date_and_time_selected') {
+    gtag('event', 'calendly_time_selected', {
+      event_category: 'lead',
+      event_label: 'Calendly time selected'
+    });
+  }
+});
+</script>
+
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#211D1A;
+  --paper:#F6F1E9;
+  --white:#FFFFFF;
+  --stone:#6B645C;
+  --line:#DDD4C4;
+  --rust:#8C4A32;
+  --surface:#EFE7D8;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+}
+.container{max-width:1120px;margin:0 auto;padding:0 1.75rem}
+nav{border-bottom:1px solid var(--line);background:var(--paper)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.75rem}
+.nav-logo img{height:34px;width:auto;display:block}
+.back-link{font-size:.9rem;font-weight:700;color:var(--rust);text-decoration:none}
+main{padding:4rem 0 5rem}
+.intro{max-width:760px;margin-bottom:2rem}
+.eyebrow{
+  font-size:.72rem;text-transform:uppercase;letter-spacing:.11em;
+  color:var(--rust);font-weight:800;margin-bottom:.9rem
+}
+h1{
+  margin:0;
+  font-size:clamp(2.5rem,5vw,4.8rem);
+  line-height:1;
+  letter-spacing:-.04em;
+}
+.lead{
+  margin-top:1.2rem;
+  font-size:1.08rem;
+  line-height:1.75;
+  color:var(--stone);
+  max-width:700px;
+}
+.booking-shell{
+  background:var(--white);
+  border:1px solid var(--line);
+  min-height:760px;
+}
+.calendly-inline-widget{
+  min-width:320px;
+  height:760px;
+}
+.note{
+  margin-top:1rem;
+  font-size:.85rem;
+  color:var(--stone);
+}
+footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--stone);font-size:.82rem}
+@media(max-width:700px){
+  main{padding-top:2.5rem}
+  .booking-shell,.calendly-inline-widget{min-height:850px;height:850px}
+}
+</style>
+</head>
+
+<body>
+<nav>
+  <div class="container nav-inner">
+    <a class="nav-logo" href="/" aria-label="The Floor home">
+      <img src="/images/logo-nav.png" alt="The Floor">
+    </a>
+    <a class="back-link" href="/">Back to The Floor</a>
+  </div>
+</nav>
+
+<main>
+  <div class="container">
+    <div class="intro">
+      <div class="eyebrow">Talk with Jeff</div>
+      <h1>Let’s look at where revenue is getting stuck.</h1>
+      <p class="lead">Pick a time that works. We’ll use the conversation to understand what is happening inside the business, where the pressure is showing up, and whether The Floor is actually the right fit.</p>
+    </div>
+
+    <div class="booking-shell">
+      <div
+        class="calendly-inline-widget"
+        data-url="https://calendly.com/jeff-lfsm?hide_gdpr_banner=1"
+        style="min-width:320px;height:760px;">
+      </div>
+    </div>
+
+    <p class="note">Booking completion is measured for campaign attribution. No redirect is required.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="container">Commercial leadership for founder-led B2B companies. © 2026 The Floor.</div>
+</footer>
+
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+</body>
+</html>
