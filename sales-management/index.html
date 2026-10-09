@@ -205,6 +205,155 @@ footer{background:var(--paper)}
 .lp-card,.diagnostic{box-shadow:none}
 section{scroll-margin-top:78px}
 
+
+/* ===== HUMAN / EDITORIAL REFINEMENT ===== */
+:root{
+  --ink:#161A1D;
+  --paper:#F3F0E8;
+  --white:#FBFAF6;
+  --stone:#6D706F;
+  --line:#D6D1C5;
+  --rust:#8B6A3E;
+  --rust-dark:#6E5230;
+  --surface:#E8E5DC;
+  --charcoal:#20262A;
+  --soft:#F7F4ED;
+}
+html{background:var(--paper)}
+body{background:var(--paper);color:var(--ink)}
+nav{background:rgba(243,240,232,.96)!important;border-bottom:1px solid var(--line)!important;box-shadow:none!important}
+.nav-logo img,.brand img{height:34px!important;width:auto!important}
+section{scroll-margin-top:78px}
+.eyebrow{
+  color:var(--rust-dark)!important;
+  letter-spacing:.09em!important;
+  font-size:.7rem!important;
+}
+.btn,.nav-cta,.cta,.result-btn{
+  border-radius:1px!important;
+  box-shadow:none!important;
+}
+.btn-primary,.nav-cta,.cta{
+  background:var(--ink)!important;
+  color:var(--paper)!important;
+  border-color:var(--ink)!important;
+}
+.btn-primary:hover,.nav-cta:hover,.cta:hover{
+  background:#2A3034!important;
+}
+.text-link{
+  color:var(--ink)!important;
+  border-bottom:1px solid var(--rust)!important;
+}
+footer{box-shadow:none!important}
+
+/* Sales Management — authored, not templated */
+.lp-hero{
+  padding:6rem 0 5rem!important;
+}
+.lp-hero h1{
+  font-size:clamp(3rem,6vw,5.15rem)!important;
+  line-height:.98!important;
+  letter-spacing:-.045em!important;
+  max-width:900px!important;
+}
+.lp-hero .hero-lead{
+  font-size:1.3rem!important;
+  line-height:1.55!important;
+  max-width:760px!important;
+  margin-top:1.5rem!important;
+}
+.lp-hero .hero-sub{
+  max-width:690px!important;
+  font-size:1rem!important;
+  line-height:1.78!important;
+}
+.lp-grid{
+  display:grid!important;
+  grid-template-columns:repeat(3,1fr)!important;
+  gap:2.4rem!important;
+  background:transparent!important;
+  border:0!important;
+  margin-top:3rem!important;
+}
+.lp-card{
+  background:transparent!important;
+  border:0!important;
+  border-top:1px solid var(--ink)!important;
+  padding:1.25rem 0 0!important;
+  box-shadow:none!important;
+}
+.lp-card .num{
+  color:var(--rust-dark)!important;
+  margin-bottom:1rem!important;
+}
+.lp-card h3{
+  font-size:1.25rem!important;
+  line-height:1.2!important;
+}
+.lp-card p{
+  font-size:.96rem!important;
+  line-height:1.72!important;
+}
+.lp-band{
+  background:var(--charcoal)!important;
+  color:var(--paper)!important;
+  padding:5.5rem 0!important;
+}
+.lp-band h2{
+  font-size:clamp(2.2rem,4.5vw,3.6rem)!important;
+  line-height:1.04!important;
+  letter-spacing:-.035em!important;
+}
+.lp-band p{color:#D5D0C7!important}
+.lp-bullets{
+  gap:0 3rem!important;
+  margin-top:2.4rem!important;
+}
+.lp-bullets li{
+  color:#E4DED5!important;
+  padding:1rem 0!important;
+  border-top:1px solid rgba(255,255,255,.18)!important;
+}
+.lp-bullets li:before{color:#C2A472!important}
+.surface{
+  background:transparent!important;
+}
+.offer-grid{
+  gap:2.5rem!important;
+  border:0!important;
+  background:transparent!important;
+}
+.offer-card{
+  border:0!important;
+  border-top:1px solid var(--ink)!important;
+  background:transparent!important;
+  padding:1.35rem 0 0!important;
+  box-shadow:none!important;
+}
+.offer-card.primary{
+  border:0!important;
+  border-top:3px solid var(--rust)!important;
+  transform:none!important;
+}
+.quote-block{
+  max-width:860px!important;
+}
+.quote-block p{
+  font-size:clamp(1.5rem,2.7vw,2.05rem)!important;
+  line-height:1.5!important;
+}
+.cred-row{
+  gap:.75rem 1.5rem!important;
+}
+.cred-row span{
+  border:0!important;
+  background:transparent!important;
+}
+@media(max-width:860px){
+  .lp-grid{grid-template-columns:1fr!important;gap:1.8rem!important}
+}
+
 </style>
 </head>
 <body>
