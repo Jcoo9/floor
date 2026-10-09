@@ -3,340 +3,603 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="google-site-verification" content="XExZAG8tKja2jc0q9I4YdnX2aIZ0pZh87dEPEsLUTqc" />
+
 <title>The Revenue Leak Check | The Floor</title>
-<meta name="description" content="A 3-minute founder diagnostic: 12 places revenue quietly gets stuck inside founder-led B2B companies." />
+<meta name="description" content="A 3-minute diagnostic for founder-led B2B companies. Find where revenue is getting stuck before you spend more money generating demand." />
 <link rel="canonical" href="https://floor.earnedtalent.com/revenue-leak-check/" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="The Revenue Leak Check | The Floor" />
+<meta property="og:description" content="Find where revenue is getting stuck before you spend more money generating demand." />
+<meta property="og:url" content="https://floor.earnedtalent.com/revenue-leak-check/" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NPTJVDW6Z4"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-NPTJVDW6Z4');
+</script>
+
 <style>
 :root{
-  --ink:#111318;--paper:#F6F1E9;--white:#fff;--stone:#675F59;--line:#DDD4C4;
-  --rust:#A48652;--surface:#EFE7D8;--dark:#111318;
+  --bg:#F5F6F4;
+  --paper:#FFFFFF;
+  --ink:#101010;
+  --muted:#626660;
+  --line:#D8DBD6;
+  --accent:#E84822;
+  --dark:#181A19;
+  --display:"Archivo",sans-serif;
+  --body:"Source Sans 3",sans-serif;
+  --mono:"IBM Plex Mono",monospace;
 }
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--paper);color:var(--ink);line-height:1.55}
-a{color:inherit;text-decoration:none}.container{max-width:1080px;margin:0 auto;padding:0 24px}
-nav{background:var(--dark);position:sticky;top:0;z-index:20;border-bottom:1px solid #292D31}
-.nav{height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.nav img{height:45px;width:auto;display:block}.nav a.cta{background:var(--rust);color:#fff;padding:11px 16px;font-weight:700;border-radius:4px}
-.hero{padding:64px 0 42px}.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--rust);font-weight:800}
-h1{font-size:clamp(42px,7vw,72px);line-height:.98;letter-spacing:-.04em;margin:14px 0 18px;max-width:900px}
-.lead{font-size:20px;font-weight:600;max-width:760px}.sub{font-size:16px;color:var(--stone);max-width:760px;margin-top:12px}
-.proof{margin-top:22px;padding:18px 20px;background:#fff;border:1px solid var(--line);max-width:780px}
-.proof strong{display:block;margin-bottom:4px}.proof span{color:var(--stone);font-size:14px}
-.quiz{padding:24px 0 70px}.question{background:#fff;border:1px solid var(--line);margin:0 0 14px;padding:24px}
-.qnum{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--rust);font-weight:800}
-.question h2{font-size:22px;line-height:1.2;margin:6px 0 8px}.question p{margin:0 0 16px;color:var(--stone)}
-.choices{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.choice{position:relative}.choice input{position:absolute;opacity:0;pointer-events:none}
-.choice label{display:block;border:1px solid var(--line);padding:13px 12px;background:var(--paper);font-weight:700;cursor:pointer;border-radius:4px}
-.choice input:checked+label{border-color:var(--rust);background:#fff4ee;box-shadow:0 0 0 1px var(--rust)}
-.result-btn{display:inline-block;border:0;background:var(--rust);color:#fff;font-weight:800;padding:14px 20px;font-size:16px;border-radius:4px;cursor:pointer;margin-top:10px}
-#result{display:none;margin-top:28px;background:var(--dark);color:#fff;padding:30px}
-#result h2{font-size:32px;margin:0 0 8px}.result-line{color:#E5DCD4;font-size:17px;max-width:760px}
-.next{margin-top:22px;background:#fff;color:var(--ink);padding:22px;border-radius:4px}
-.next h3{margin:0 0 8px;font-size:22px}.next p{color:var(--stone);margin:0 0 12px}
-.buttons{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}.btn{display:inline-block;padding:12px 16px;border-radius:4px;font-weight:800}
-.btn.primary{background:var(--rust);color:#fff}.btn.secondary{border:1px solid var(--line);background:#fff}
-.ladder{padding:60px 0;border-top:1px solid var(--line)}.ladder-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
-.card{background:#fff;border:1px solid var(--line);padding:22px}.card .tag{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--rust);font-weight:800}
-.card h3{margin:6px 0}.price{font-size:26px;font-weight:800}.card p{color:var(--stone);font-size:14px}
-footer{background:var(--dark);color:#C9C1BA;padding:26px 0;font-size:13px}footer img{height:38px;width:auto}
-@media(max-width:760px){.choices,.ladder-grid{grid-template-columns:1fr}.hero{padding-top:42px}.question{padding:20px}.nav a:not(.cta){display:none}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:18px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button,input{font:inherit}
+.wrap{width:min(960px,calc(100% - 40px));margin:0 auto}
 
-/* ===== PREMIUM OPERATOR VISUAL SYSTEM ===== */
-:root{
-  --ink:#121416;
-  --paper:#F3F0E9;
-  --white:#FFFFFF;
-  --stone:#686762;
-  --line:#D7D1C6;
-  --rust:#A48652;
-  --rust-dark:#7E663E;
-  --surface:#EAE5DC;
-  --charcoal:#1B1E20;
-  --soft:#F8F6F1;
+/* nav */
+nav{
+  position:sticky;top:0;z-index:30;
+  background:rgba(245,246,244,.97);
+  border-bottom:1px solid var(--line);
 }
-body{background:var(--paper);color:var(--ink)}
-nav,.topbar,.site-header{background:rgba(243,240,233,.96)!important;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-color:var(--line)!important}
-.brand img,.nav-logo img{height:34px;width:auto;display:block}
-button,.btn,.primary-cta{border-radius:2px!important}
-.btn-primary,.primary-cta,.submit-btn{background:var(--ink)!important;color:var(--paper)!important;border-color:var(--ink)!important}
-.btn-primary:hover,.primary-cta:hover,.submit-btn:hover{background:var(--rust-dark)!important;border-color:var(--rust-dark)!important}
-.eyebrow,.kicker,.mini-label,.question-number,.result-kicker{color:var(--rust-dark)!important}
-.card,.question-card,.result-card,.score-card{box-shadow:none!important;border-color:var(--line)!important}
-.question-card,.card{background:var(--soft)!important}
-.progress-fill,.score-fill{background:var(--rust)!important}
-a.text-link{color:var(--rust-dark)!important}
-footer{background:var(--paper)}
+.nav-inner{
+  min-height:68px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+}
+.nav-logo img{height:32px;width:auto}
+.nav-cta{
+  display:inline-flex;align-items:center;justify-content:center;
+  background:var(--ink);color:#fff;border:2px solid var(--ink);
+  border-radius:2px;padding:12px 16px;
+  font-family:var(--mono);font-size:10px;font-weight:700;text-transform:uppercase;
+}
+.nav-cta:hover{background:var(--accent);border-color:var(--accent)}
 
-
-/* ===== HUMAN / EDITORIAL REFINEMENT ===== */
-:root{
-  --ink:#161A1D;
-  --paper:#F3F0E8;
-  --white:#FBFAF6;
-  --stone:#6D706F;
-  --line:#D6D1C5;
-  --rust:#8B6A3E;
-  --rust-dark:#6E5230;
-  --surface:#E8E5DC;
-  --charcoal:#20262A;
-  --soft:#F7F4ED;
-}
-html{background:var(--paper)}
-body{background:var(--paper);color:var(--ink)}
-nav{background:rgba(243,240,232,.96)!important;border-bottom:1px solid var(--line)!important;box-shadow:none!important}
-.nav-logo img,.brand img{height:34px!important;width:auto!important}
-section{scroll-margin-top:78px}
-.eyebrow{
-  color:var(--rust-dark)!important;
-  letter-spacing:.09em!important;
-  font-size:.7rem!important;
-}
-.btn,.nav-cta,.cta,.result-btn{
-  border-radius:1px!important;
-  box-shadow:none!important;
-}
-.btn-primary,.nav-cta,.cta{
-  background:var(--ink)!important;
-  color:var(--paper)!important;
-  border-color:var(--ink)!important;
-}
-.btn-primary:hover,.nav-cta:hover,.cta:hover{
-  background:#2A3034!important;
-}
-.text-link{
-  color:var(--ink)!important;
-  border-bottom:1px solid var(--rust)!important;
-}
-footer{box-shadow:none!important}
-
-/* Revenue Leak Check — more like a founder worksheet than an app */
+/* hero */
 .hero{
-  padding:5.5rem 0 3.5rem!important;
+  padding:64px 0 34px;
+  background:var(--paper);
+  border-bottom:1px solid var(--line);
+}
+.kicker{
+  font-family:var(--mono);
+  font-size:10px;font-weight:700;text-transform:uppercase;
+  color:var(--accent);
 }
 .hero h1{
-  font-size:clamp(2.8rem,5.5vw,4.8rem)!important;
-  line-height:1!important;
-  letter-spacing:-.045em!important;
-  max-width:900px!important;
+  max-width:820px;
+  margin:12px 0 0;
+  font-family:var(--display);
+  font-size:clamp(48px,7vw,78px);
+  line-height:.98;
+  letter-spacing:-.04em;
 }
-.lead{
-  font-size:1.2rem!important;
-  line-height:1.62!important;
-  max-width:760px!important;
+.hero-lead{
+  max-width:760px;
+  margin-top:18px;
+  font-size:22px;
+  line-height:1.35;
+  font-weight:600;
 }
-.sub{
-  line-height:1.7!important;
+.hero-sub{
+  max-width:740px;
+  margin-top:12px;
+  color:var(--muted);
+  font-size:16px;
 }
-.proof{
-  background:transparent!important;
-  border:0!important;
-  border-left:3px solid var(--rust)!important;
-  padding:.25rem 0 .25rem 1.2rem!important;
-  margin-top:2rem!important;
+.trust{
+  margin-top:24px;
+  padding-top:18px;
+  border-top:2px solid var(--ink);
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:24px;
+  align-items:end;
 }
-.quiz{
-  padding-top:1rem!important;
+.trust strong{font-size:15px}
+.trust span{
+  display:block;
+  margin-top:4px;
+  color:var(--muted);
+  font-size:14px;
 }
-.question{
-  background:transparent!important;
-  border:0!important;
-  border-top:1px solid var(--line)!important;
-  margin:0!important;
-  padding:2.3rem 0!important;
-  box-shadow:none!important;
-}
-.question:first-of-type{
-  border-top:1px solid var(--ink)!important;
-}
-.question h2{
-  font-size:clamp(1.35rem,2.3vw,1.85rem)!important;
-  letter-spacing:-.02em!important;
-  margin:.55rem 0 .65rem!important;
-}
-.qnum{color:var(--rust-dark)!important}
-.choices{
-  display:flex!important;
-  flex-wrap:wrap!important;
-  gap:.6rem!important;
-  margin-top:1.2rem!important;
-}
-.choice label{
-  background:transparent!important;
-  border:1px solid var(--line)!important;
-  border-radius:1px!important;
-  padding:.7rem 1rem!important;
-  font-size:.9rem!important;
-}
-.choice input:checked+label{
-  background:var(--ink)!important;
-  color:var(--paper)!important;
-  border-color:var(--ink)!important;
-  box-shadow:none!important;
-}
-.result-btn{
-  background:var(--ink)!important;
-  color:var(--paper)!important;
-  padding:14px 20px!important;
-}
-#result{
-  background:var(--charcoal)!important;
-  padding:2.5rem!important;
-  border-top:3px solid var(--rust)!important;
-}
-.next{
-  background:transparent!important;
-  color:var(--paper)!important;
-  padding:1.5rem 0 0!important;
-  border-radius:0!important;
-  border-top:1px solid rgba(255,255,255,.2)!important;
-}
-.next p{color:#D9D3CA!important}
-.next .btn.secondary{
-  background:transparent!important;
-  color:var(--paper)!important;
-  border-color:rgba(255,255,255,.35)!important;
-}
-.next .btn.primary{
-  background:var(--paper)!important;
-  color:var(--ink)!important;
-}
-.ladder{
-  padding:5rem 0!important;
-}
-.ladder-grid{
-  display:grid!important;
-  grid-template-columns:repeat(3,1fr)!important;
-  gap:2.5rem!important;
-  margin-top:2.5rem!important;
-}
-.card{
-  background:transparent!important;
-  border:0!important;
-  border-top:1px solid var(--ink)!important;
-  padding:1.25rem 0 0!important;
-  box-shadow:none!important;
-}
-.card .tag{color:var(--rust-dark)!important}
-.card p{font-size:.92rem!important;line-height:1.65!important}
-footer{
-  background:var(--charcoal)!important;
-  color:#D3CEC5!important;
-}
-@media(max-width:760px){
-  .ladder-grid{grid-template-columns:1fr!important;gap:1.8rem!important}
-  .choices{display:grid!important;grid-template-columns:1fr!important}
+.trust small{
+  font-family:var(--mono);
+  font-size:10px;
+  text-transform:uppercase;
+  color:var(--muted);
 }
 
+/* sticky progress */
+.progress-shell{
+  position:sticky;
+  top:68px;
+  z-index:20;
+  background:var(--bg);
+  border-bottom:1px solid var(--line);
+}
+.progress-inner{
+  width:min(960px,calc(100% - 40px));
+  margin:0 auto;
+  padding:12px 0 10px;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:16px;
+  align-items:center;
+}
+.progress-label,
+.progress-count{
+  font-family:var(--mono);
+  font-size:10px;
+  font-weight:700;
+  text-transform:uppercase;
+}
+.progress-track{
+  height:6px;
+  background:#E1E4E0;
+  overflow:hidden;
+}
+.progress-bar{
+  width:0%;
+  height:100%;
+  background:var(--accent);
+  transition:width .18s ease;
+}
+
+/* quiz */
+.quiz{padding:36px 0 72px}
+.question{
+  background:var(--paper);
+  border:1px solid var(--line);
+  margin-bottom:16px;
+  padding:24px;
+}
+.question-top{
+  display:flex;justify-content:space-between;gap:20px;align-items:flex-start;
+}
+.qnum{
+  font-family:var(--mono);
+  font-size:10px;
+  font-weight:700;
+  color:var(--accent);
+}
+.question h2{
+  margin:8px 0 0;
+  font-family:var(--display);
+  font-size:25px;
+  line-height:1.15;
+}
+.question p{
+  margin:8px 0 0;
+  color:var(--muted);
+  font-size:16px;
+  line-height:1.5;
+}
+.choices{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:18px;
+}
+.choice{position:relative}
+.choice input{
+  position:absolute;
+  opacity:0;
+  pointer-events:none;
+}
+.choice label{
+  display:flex;
+  min-height:48px;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:11px 10px;
+  background:var(--bg);
+  border:2px solid var(--line);
+  border-radius:2px;
+  font-weight:700;
+  cursor:pointer;
+  transition:border-color .12s ease, background .12s ease;
+}
+.choice label:hover{border-color:var(--ink)}
+.choice input:checked + label{
+  background:var(--ink);
+  color:#fff;
+  border-color:var(--ink);
+}
+.finish{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+  padding-top:10px;
+}
+.finish-copy{
+  color:var(--muted);
+  font-size:14px;
+}
+.result-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:2px solid var(--ink);
+  border-radius:2px;
+  background:var(--ink);
+  color:#fff;
+  padding:14px 18px;
+  font-family:var(--mono);
+  font-size:11px;
+  font-weight:700;
+  text-transform:uppercase;
+  cursor:pointer;
+}
+.result-btn:hover{background:var(--accent);border-color:var(--accent)}
+
+/* result */
+#result{
+  display:none;
+  margin-top:34px;
+  background:var(--dark);
+  color:#fff;
+  border-top:6px solid var(--accent);
+  padding:30px;
+}
+#result .result-kicker{
+  font-family:var(--mono);
+  font-size:10px;
+  text-transform:uppercase;
+  color:#BFC4BE;
+}
+#result h2{
+  margin:10px 0 0;
+  font-family:var(--display);
+  font-size:34px;
+  line-height:1.08;
+}
+.result-line{
+  max-width:760px;
+  margin-top:10px;
+  color:#D4D8D3;
+}
+.result-areas{
+  margin-top:24px;
+  border-top:1px solid #454A45;
+}
+.result-areas h3{
+  margin:18px 0 10px;
+  font-family:var(--mono);
+  font-size:10px;
+  text-transform:uppercase;
+  color:#BFC4BE;
+}
+.result-areas ul{
+  margin:0;padding:0;list-style:none;
+}
+.result-areas li{
+  display:grid;
+  grid-template-columns:24px 1fr;
+  gap:10px;
+  padding:10px 0;
+  border-top:1px solid #363A36;
+  font-size:15px;
+}
+.result-areas li::before{
+  content:"";
+  width:8px;height:8px;
+  margin-top:7px;
+  background:var(--accent);
+}
+.result-next{
+  margin-top:28px;
+  background:#fff;
+  color:var(--ink);
+  padding:24px;
+}
+.result-next h3{
+  margin:0;
+  font-family:var(--display);
+  font-size:26px;
+}
+.result-next p{
+  margin:9px 0 0;
+  color:var(--muted);
+  font-size:16px;
+}
+.result-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:18px;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:13px 16px;
+  border-radius:2px;
+  border:2px solid var(--ink);
+  font-family:var(--mono);
+  font-size:10px;
+  font-weight:700;
+  text-transform:uppercase;
+}
+.btn.primary{background:var(--ink);color:#fff}
+.btn.primary:hover{background:var(--accent);border-color:var(--accent)}
+.btn.secondary{background:#fff;color:var(--ink)}
+.btn.secondary:hover{border-color:var(--accent)}
+
+/* bottom */
+.bottom-note{
+  padding:44px 0 60px;
+  border-top:1px solid var(--line);
+}
+.bottom-box{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:30px;
+  align-items:center;
+}
+.bottom-box h3{
+  font-family:var(--display);
+  font-size:28px;
+}
+.bottom-box p{
+  margin-top:8px;
+  color:var(--muted);
+  font-size:15px;
+  max-width:700px;
+}
+footer{
+  padding:22px 0;
+  border-top:1px solid var(--line);
+  font-family:var(--mono);
+  font-size:9px;
+  text-transform:uppercase;
+}
+.footer-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+}
+.footer-inner img{height:26px;width:auto}
+
+@media(max-width:700px){
+  .wrap,.progress-inner{width:min(100% - 28px,960px)}
+  .hero{padding:46px 0 28px}
+  .hero h1{font-size:clamp(44px,13vw,64px)}
+  .trust{grid-template-columns:1fr}
+  .choices{grid-template-columns:1fr}
+  .question{padding:20px}
+  .progress-label{display:none}
+  .progress-inner{grid-template-columns:1fr auto}
+  .bottom-box{grid-template-columns:1fr}
+}
 </style>
 </head>
+
 <body>
 <nav>
-<div class="container nav">
-<a href="/"><img src="/images/logo-nav.png" alt="The Floor"></a>
-<a class="cta" href="/book/">Talk With Jeff</a>
-</div>
+  <div class="wrap nav-inner">
+    <a class="nav-logo" href="/" aria-label="The Floor home">
+      <img src="/images/logo-nav.png" alt="The Floor">
+    </a>
+    <a class="nav-cta" href="/book/" data-track="nav_book">Talk With Jeff</a>
+  </div>
 </nav>
 
 <section class="hero">
-<div class="container">
-<div class="eyebrow">3-minute founder diagnostic</div>
-<h1>Where is revenue getting stuck right now?</h1>
-<p class="lead">Most founders assume they need more leads. Sometimes they do. But before you pay to create more demand, check whether you're already losing revenue you worked to get.</p>
-<p class="sub">For each one, choose the answer that's closest to true. Nobody's grading you.</p>
-<div class="proof"><strong>Built by Jeff Cohen, founder of The Floor.</strong><span>20+ years running B2B sales teams and commercial operations, plus COO/operator experience inside founder-led businesses.</span></div>
-</div>
+  <div class="wrap">
+    <div class="kicker">3-minute founder diagnostic</div>
+    <h1>Where is revenue getting stuck?</h1>
+    <p class="hero-lead">Before you spend more money generating demand, check whether revenue is already leaking inside the business.</p>
+    <p class="hero-sub">Answer all 12 based on what is actually happening — not what the process is supposed to look like.</p>
+
+    <div class="trust">
+      <div>
+        <strong>Built by Jeff Cohen, founder of The Floor.</strong>
+        <span>20+ years leading B2B sales teams and commercial operations, plus COO/operator experience inside founder-led businesses.</span>
+      </div>
+      <small>No email wall · immediate result</small>
+    </div>
+  </div>
 </section>
 
+<div class="progress-shell">
+  <div class="progress-inner">
+    <div class="progress-label">Revenue Leak Check</div>
+    <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+    <div class="progress-count" id="progressCount">0 / 12</div>
+  </div>
+</div>
+
 <section class="quiz">
-<div class="container" id="quiz">
+  <div class="wrap" id="quiz"></div>
+</section>
+
+<section class="bottom-note">
+  <div class="wrap bottom-box">
+    <div>
+      <h3>Want to go deeper?</h3>
+      <p>The Revenue Build is a 30-day, fixed-fee engagement for founders who already know sales and revenue need more hands-on management.</p>
+    </div>
+    <a class="btn secondary" href="/revenue-build/">See the Revenue Build</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <img src="/images/logo-nav.png" alt="The Floor">
+    <span>Hands-on sales management and commercial leadership for founder-led B2B companies. © 2026 The Floor.</span>
+  </div>
+</footer>
 
 <script>
 const questions = [
-["Deals are sitting around","How many deals are in the pipeline right now that everybody knows probably aren't moving? If there's no clear next step, date or owner, they're not really pipeline. They're clutter."],
-["Old customers have gone quiet","Former customers nobody's reached out to in the last 6-12 months. Winning one back is usually cheaper than landing a new one."],
-["Good customers could be buying more","You have current customers who could probably buy more, but nobody really owns cross-sell or account growth."],
-["Follow-up depends on memory","Deals die when the next step lived in somebody's head instead of a real operating cadence."],
-["The founder is still in too many deals","Important opportunities still need the founder to rescue, approve or close them. That works for a while. Then it becomes a bottleneck."],
-["People are selling, but nobody runs the pipeline every week","Priorities, coaching and next steps aren't consistently managed. If that's you 'when you have time,' mark Yep."],
-["Nobody really trusts the pipeline","Ask yourself which five deals will close this quarter. If you'd hedge, or the answer changes depending on who you ask, mark Yep."],
-["Partnerships get talked about more than pursued","You have referral, channel, distribution or strategic relationships that never really go anywhere. If everybody owns partnerships, usually nobody owns them."],
-["A new offer has been discussed more than once and never shipped","A package, service, sponsorship, product or monetization idea keeps coming up and still hasn't made it into market."],
-["There's an obvious buyer group nobody's really gone after","An industry, customer type or region you know you could probably sell to hasn't been systematically pursued."],
-["Pricing and packaging haven't changed in forever","You can't remember the last time you changed your pricing or how you package what you sell."],
-["You've tried AI in sales without deciding what people own","The tools are there, but nobody decided what humans should own, what the machine should do, and how the output becomes action. No AI yet? Mark Not us."]
+  ["Deals are sitting around","How many deals are in the pipeline right now that everybody knows probably aren't moving? If there's no clear next step, date or owner, they're not really pipeline. They're clutter."],
+  ["Old customers have gone quiet","Former customers nobody's reached out to in the last 6-12 months. Winning one back is usually cheaper than landing a new one."],
+  ["Good customers could be buying more","You have current customers who could probably buy more, but nobody really owns cross-sell or account growth."],
+  ["Follow-up depends on memory","Deals die when the next step lived in somebody's head instead of a real operating cadence."],
+  ["The founder is still in too many deals","Important opportunities still need the founder to rescue, approve or close them. That works for a while. Then it becomes a bottleneck."],
+  ["People are selling, but nobody runs the pipeline every week","Priorities, coaching and next steps aren't consistently managed. If that's you 'when you have time,' mark Yep."],
+  ["Nobody really trusts the pipeline","Ask yourself which five deals will close this quarter. If you'd hedge, or the answer changes depending on who you ask, mark Yep."],
+  ["Partnerships get talked about more than pursued","You have referral, channel, distribution or strategic relationships that never really go anywhere. If everybody owns partnerships, usually nobody owns them."],
+  ["A new offer has been discussed more than once and never shipped","A package, service, sponsorship, product or monetization idea keeps coming up and still hasn't made it into market."],
+  ["There's an obvious buyer group nobody's really gone after","An industry, customer type or region you know you could probably sell to hasn't been systematically pursued."],
+  ["Pricing and packaging haven't changed in forever","You can't remember the last time you changed your pricing or how you package what you sell."],
+  ["You've tried AI in sales without deciding what people own","The tools are there, but nobody decided what humans should own, what the machine should do, and how the output becomes action. No AI yet? Mark Not us."]
 ];
-document.write(questions.map((q,i)=>`
-<div class="question">
-  <div class="qnum">${String(i+1).padStart(2,"0")}</div>
-  <h2>${q[0]}</h2>
-  <p>${q[1]}</p>
-  <div class="choices">
-    <div class="choice"><input type="radio" name="q${i}" id="q${i}a" value="0"><label for="q${i}a">Not us</label></div>
-    <div class="choice"><input type="radio" name="q${i}" id="q${i}b" value="1"><label for="q${i}b">Sometimes</label></div>
-    <div class="choice"><input type="radio" name="q${i}" id="q${i}c" value="2"><label for="q${i}c">Yep, this is us</label></div>
+
+const quiz = document.getElementById("quiz");
+
+questions.forEach((q,i)=>{
+  const el = document.createElement("div");
+  el.className = "question";
+  el.innerHTML = `
+    <div class="question-top">
+      <div>
+        <div class="qnum">QUESTION ${String(i+1).padStart(2,"0")} / 12</div>
+        <h2>${q[0]}</h2>
+        <p>${q[1]}</p>
+      </div>
+    </div>
+    <div class="choices">
+      <div class="choice"><input type="radio" name="q${i}" id="q${i}a" value="0"><label for="q${i}a">Not us</label></div>
+      <div class="choice"><input type="radio" name="q${i}" id="q${i}b" value="1"><label for="q${i}b">Sometimes</label></div>
+      <div class="choice"><input type="radio" name="q${i}" id="q${i}c" value="2"><label for="q${i}c">Yep, this is us</label></div>
+    </div>
+  `;
+  quiz.appendChild(el);
+});
+
+const finish = document.createElement("div");
+finish.className = "finish";
+finish.innerHTML = `
+  <div class="finish-copy">Answer all 12 to see your result and the specific areas worth looking at first.</div>
+  <button class="result-btn" type="button" onclick="scoreQuiz()">Show me what this means</button>
+`;
+quiz.appendChild(finish);
+
+const result = document.createElement("div");
+result.id = "result";
+result.innerHTML = `
+  <div class="result-kicker">Your result</div>
+  <h2 id="resultHead"></h2>
+  <p class="result-line" id="resultCopy"></p>
+
+  <div class="result-areas" id="resultAreas" style="display:none">
+    <h3>Areas you marked “Yep, this is us”</h3>
+    <ul id="resultList"></ul>
   </div>
-</div>`).join(""));
-</script>
 
-<button class="result-btn" onclick="scoreQuiz()">Show me what this means</button>
+  <div class="result-next">
+    <h3>Talk through your top two leaks with Jeff.</h3>
+    <p>Twenty minutes is enough to compare what you are seeing, decide what matters most, and figure out whether The Floor can help. Sometimes the answer will be no.</p>
+    <div class="result-actions">
+      <a class="btn primary" href="/book/" data-track="result_book">Talk through my results with Jeff</a>
+      <a class="btn secondary" href="/revenue-build/">See the 30-Day Revenue Build</a>
+    </div>
+  </div>
+`;
+quiz.appendChild(result);
 
-<div id="result">
-<h2 id="resultHead"></h2>
-<p class="result-line" id="resultCopy"></p>
-<div class="next">
-<h3>Do one more thing before you buy more leads.</h3>
-<p>Give this to your sales lead, COO or business partner and have them score it separately. Wherever you disagree is probably worth looking at.</p>
-<p><strong>Want a second set of eyes on your top two leaks?</strong> Book 20 minutes with Jeff. He'll tell you what he sees and whether it's worth working together. Sometimes it won't be.</p>
-<div class="buttons">
-<a class="btn primary" href="/book/">Book 20 minutes with Jeff</a>
-<a class="btn secondary" href="/revenue-build/">See how the Revenue Build works</a>
-</div>
-</div>
-</div>
-
-</div>
-</section>
-
-<section class="ladder">
-<div class="container">
-<div class="eyebrow">If you need help after the call</div>
-<h2>Start with the amount of help you actually need.</h2>
-<div class="ladder-grid">
-<div class="card"><div class="tag">Diagnostic</div><h3>The Floor Check</h3><div class="price">$1,500</div><p>One week. We identify where revenue is getting stuck and give you a specific 30-day action plan.</p><p><strong>If you start a Revenue Build within 14 days, the $1,500 is credited toward it.</strong></p></div>
-<div class="card"><div class="tag">Execution</div><h3>30-Day Revenue Build</h3><div class="price">$5,000</div><p>Find what's real, find what's stalled or missed, and start moving the best opportunities. No long-term commitment.</p></div>
-<div class="card"><div class="tag">Ongoing</div><h3>Commercial Leadership</h3><div class="price">$7,500+</div><p>For companies that want The Floor to stay inside the business and continue operating the commercial work.</p></div>
-</div>
-</div>
-</section>
-
-<footer><div class="container"><img src="/images/logo-nav.png" alt="The Floor"><div>Commercial leadership for founder-led B2B companies. © 2026 The Floor.</div></div></footer>
-
-<script>
-function scoreQuiz(){
-  let yep=0, answered=0;
+function updateProgress(){
+  let answered = 0;
   for(let i=0;i<12;i++){
-    const v=document.querySelector(`input[name="q${i}"]:checked`);
-    if(v){answered++; if(Number(v.value)===2)yep++;}
+    if(document.querySelector(`input[name="q${i}"]:checked`)) answered++;
   }
-  if(answered<12){alert("Answer all 12 first. It takes less than a minute to finish.");return;}
-  const head=document.getElementById("resultHead");
-  const copy=document.getElementById("resultCopy");
-  if(yep<=2){
-    head.textContent=`${yep} “Yep” answer${yep===1?"":"s"}: a few leaks, not a rebuild.`;
-    copy.textContent="Fix the obvious ones first. You probably don't need a major commercial intervention.";
-  }else if(yep<=5){
-    head.textContent=`${yep} “Yep” answers: revenue is probably slipping through the cracks.`;
-    copy.textContent="Pick the two biggest ones and put a rough dollar value on each. That's where I'd start.";
-  }else{
-    head.textContent=`${yep} “Yep” answers: don't buy more leads yet.`;
-    copy.textContent="There are enough internal leaks that adding more demand may just pour more activity into the same problems. Pick your two biggest Yeps and put a dollar figure on each.";
-  }
-  document.getElementById("result").style.display="block";
-  document.getElementById("result").scrollIntoView({behavior:"smooth"});
+  document.getElementById("progressCount").textContent = `${answered} / 12`;
+  document.getElementById("progressBar").style.width = `${(answered/12)*100}%`;
 }
+
+document.querySelectorAll('input[type="radio"]').forEach(input=>{
+  input.addEventListener("change", updateProgress);
+});
+
+function scoreQuiz(){
+  let yep = 0;
+  let answered = 0;
+  const yepAreas = [];
+
+  for(let i=0;i<12;i++){
+    const v = document.querySelector(`input[name="q${i}"]:checked`);
+    if(v){
+      answered++;
+      if(Number(v.value) === 2){
+        yep++;
+        yepAreas.push(questions[i][0]);
+      }
+    }
+  }
+
+  if(answered < 12){
+    alert(`You have answered ${answered} of 12. Finish the remaining ${12-answered} to see your result.`);
+    return;
+  }
+
+  const head = document.getElementById("resultHead");
+  const copy = document.getElementById("resultCopy");
+
+  if(yep <= 2){
+    head.textContent = `${yep} “Yep” answer${yep===1?"":"s"}: a few leaks, not a rebuild.`;
+    copy.textContent = "Fix the obvious ones first. You probably do not need a major commercial intervention.";
+  } else if(yep <= 5){
+    head.textContent = `${yep} “Yep” answers: revenue is probably slipping through the cracks.`;
+    copy.textContent = "There are enough issues here to hurt growth. Pick the two with the biggest revenue impact and start there.";
+  } else {
+    head.textContent = `${yep} “Yep” answers: do not buy more leads yet.`;
+    copy.textContent = "There are enough internal leaks that adding more demand may simply pour more activity into the same problems.";
+  }
+
+  const list = document.getElementById("resultList");
+  list.innerHTML = "";
+  yepAreas.forEach(area=>{
+    const li = document.createElement("li");
+    li.textContent = area;
+    list.appendChild(li);
+  });
+
+  document.getElementById("resultAreas").style.display = yepAreas.length ? "block" : "none";
+  document.getElementById("result").style.display = "block";
+  document.getElementById("result").scrollIntoView({behavior:"smooth", block:"start"});
+
+  if(typeof gtag === "function"){
+    gtag("event","revenue_leak_check_complete",{
+      yep_count:yep,
+      answered_count:answered
+    });
+  }
+}
+
+document.querySelectorAll('[data-track]').forEach(link=>{
+  link.addEventListener("click",()=>{
+    if(typeof gtag === "function"){
+      gtag("event",link.dataset.track);
+    }
+  });
+});
 </script>
+
 </body>
 </html>
