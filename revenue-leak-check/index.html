@@ -5,18 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="google-site-verification" content="XExZAG8tKja2jc0q9I4YdnX2aIZ0pZh87dEPEsLUTqc" />
 
-<title>The Revenue Leak Check | The Floor</title>
+<title>The Floor The Floor Revenue Leak Check</title>
 <meta name="description" content="A 3-minute diagnostic for founder-led B2B companies. Find where revenue is getting stuck before you spend more money generating demand." />
 <link rel="canonical" href="https://floor.earnedtalent.com/revenue-leak-check/" />
 
 <meta property="og:type" content="website" />
-<meta property="og:title" content="The Revenue Leak Check | The Floor" />
+<meta property="og:title" content="The Floor The Floor Revenue Leak Check" />
 <meta property="og:description" content="Find where revenue is getting stuck before you spend more money generating demand." />
 <meta property="og:url" content="https://floor.earnedtalent.com/revenue-leak-check/" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-NPTJVDW6Z4"></script>
 <script>
@@ -31,12 +31,12 @@ gtag('config', 'G-NPTJVDW6Z4');
   --bg:#F5F6F4;
   --paper:#FFFFFF;
   --ink:#101010;
-  --muted:#626660;
+  --muted:#414541;
   --line:#D8DBD6;
-  --accent:#E84822;
+  --accent:#C83B1D;
   --dark:#181A19;
-  --display:"Archivo",sans-serif;
-  --body:"Source Sans 3",sans-serif;
+  --display:"Manrope",Arial,sans-serif;
+  --body:"Manrope",Arial,sans-serif;
   --mono:"IBM Plex Mono",monospace;
 }
 *{box-sizing:border-box}
@@ -46,8 +46,8 @@ body{
   background:var(--bg);
   color:var(--ink);
   font-family:var(--body);
-  font-size:18px;
-  line-height:1.55;
+  font-size:19px;
+  line-height:1.58;
   -webkit-font-smoothing:antialiased;
 }
 a{color:inherit;text-decoration:none}
@@ -104,7 +104,7 @@ nav{
   max-width:740px;
   margin-top:12px;
   color:var(--muted);
-  font-size:16px;
+  font-size:17px;
 }
 .trust{
   margin-top:24px;
@@ -191,7 +191,7 @@ nav{
 .question p{
   margin:8px 0 0;
   color:var(--muted);
-  font-size:16px;
+  font-size:17px;
   line-height:1.5;
 }
 .choices{
@@ -301,7 +301,7 @@ nav{
   gap:10px;
   padding:10px 0;
   border-top:1px solid #363A36;
-  font-size:15px;
+  font-size:16px;
 }
 .result-areas li::before{
   content:"";
@@ -323,7 +323,7 @@ nav{
 .result-next p{
   margin:9px 0 0;
   color:var(--muted);
-  font-size:16px;
+  font-size:17px;
 }
 .result-actions{
   display:flex;
@@ -366,7 +366,7 @@ nav{
 .bottom-box p{
   margin-top:8px;
   color:var(--muted);
-  font-size:15px;
+  font-size:16px;
   max-width:700px;
 }
 footer{
@@ -405,7 +405,7 @@ footer{
     <a class="nav-logo" href="/" aria-label="The Floor home">
       <img src="/images/logo-nav.png" alt="The Floor">
     </a>
-    <a class="nav-cta" href="/book/" data-track="nav_book">Talk With Jeff</a>
+    <a class="nav-cta" href="/book/" data-track="nav_book">Book a Sales Review</a>
   </div>
 </nav>
 
@@ -418,7 +418,7 @@ footer{
 
     <div class="trust">
       <div>
-        <strong>Built by Jeff Cohen, founder of The Floor.</strong>
+        <strong>Built by The Floor for founder-led B2B companies.</strong>
         <span>20+ years leading B2B sales teams and commercial operations, plus COO/operator experience inside founder-led businesses.</span>
       </div>
       <small>No email wall · immediate result</small>
@@ -515,9 +515,9 @@ result.innerHTML = `
 
   <div class="result-next">
     <h3>Talk through your top two leaks with Jeff.</h3>
-    <p>Twenty minutes is enough to compare what you are seeing, decide what matters most, and figure out whether The Floor can help. Sometimes the answer will be no.</p>
+    <p>A short Sales Review is enough to compare what the diagnostic surfaced, decide what matters most, and determine whether The Floor is the right fit.</p>
     <div class="result-actions">
-      <a class="btn primary" href="/book/" data-track="result_book">Talk through my results with Jeff</a>
+      <a class="btn primary" href="/book/" data-track="result_book">Book a Sales Review</a>
       <a class="btn secondary" href="/revenue-build/">See the 30-Day Revenue Build</a>
     </div>
   </div>
@@ -539,16 +539,22 @@ document.querySelectorAll('input[type="radio"]').forEach(input=>{
 
 function scoreQuiz(){
   let yep = 0;
+  let sometimes = 0;
   let answered = 0;
+  let weighted = 0;
   const yepAreas = [];
 
   for(let i=0;i<12;i++){
     const v = document.querySelector(`input[name="q${i}"]:checked`);
     if(v){
       answered++;
-      if(Number(v.value) === 2){
+      const score = Number(v.value);
+      weighted += score;
+      if(score === 2){
         yep++;
         yepAreas.push(questions[i][0]);
+      } else if(score === 1){
+        sometimes++;
       }
     }
   }
@@ -560,15 +566,16 @@ function scoreQuiz(){
 
   const head = document.getElementById("resultHead");
   const copy = document.getElementById("resultCopy");
+  const mix = `${yep} “Yep”${yep===1?"":"s"}${sometimes ? ` + ${sometimes} “Sometimes”` : ""}`;
 
-  if(yep <= 2){
-    head.textContent = `${yep} “Yep” answer${yep===1?"":"s"}: a few leaks, not a rebuild.`;
+  if(weighted <= 5){
+    head.textContent = `${mix}: a few leaks, not a rebuild.`;
     copy.textContent = "Fix the obvious ones first. You probably do not need a major commercial intervention.";
-  } else if(yep <= 5){
-    head.textContent = `${yep} “Yep” answers: revenue is probably slipping through the cracks.`;
+  } else if(weighted <= 12){
+    head.textContent = `${mix}: revenue is probably slipping through the cracks.`;
     copy.textContent = "There are enough issues here to hurt growth. Pick the two with the biggest revenue impact and start there.";
   } else {
-    head.textContent = `${yep} “Yep” answers: do not buy more leads yet.`;
+    head.textContent = `${mix}: fix the operation before adding more demand.`;
     copy.textContent = "There are enough internal leaks that adding more demand may simply pour more activity into the same problems.";
   }
 
@@ -587,6 +594,8 @@ function scoreQuiz(){
   if(typeof gtag === "function"){
     gtag("event","revenue_leak_check_complete",{
       yep_count:yep,
+      sometimes_count:sometimes,
+      weighted_score:weighted,
       answered_count:answered
     });
   }
