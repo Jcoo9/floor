@@ -70,6 +70,166 @@ button,.btn,.primary-cta{border-radius:2px!important}
 a.text-link{color:var(--rust-dark)!important}
 footer{background:var(--paper)}
 
+
+/* ===== HUMAN / EDITORIAL REFINEMENT ===== */
+:root{
+  --ink:#161A1D;
+  --paper:#F3F0E8;
+  --white:#FBFAF6;
+  --stone:#6D706F;
+  --line:#D6D1C5;
+  --rust:#8B6A3E;
+  --rust-dark:#6E5230;
+  --surface:#E8E5DC;
+  --charcoal:#20262A;
+  --soft:#F7F4ED;
+}
+html{background:var(--paper)}
+body{background:var(--paper);color:var(--ink)}
+nav{background:rgba(243,240,232,.96)!important;border-bottom:1px solid var(--line)!important;box-shadow:none!important}
+.nav-logo img,.brand img{height:34px!important;width:auto!important}
+section{scroll-margin-top:78px}
+.eyebrow{
+  color:var(--rust-dark)!important;
+  letter-spacing:.09em!important;
+  font-size:.7rem!important;
+}
+.btn,.nav-cta,.cta,.result-btn{
+  border-radius:1px!important;
+  box-shadow:none!important;
+}
+.btn-primary,.nav-cta,.cta{
+  background:var(--ink)!important;
+  color:var(--paper)!important;
+  border-color:var(--ink)!important;
+}
+.btn-primary:hover,.nav-cta:hover,.cta:hover{
+  background:#2A3034!important;
+}
+.text-link{
+  color:var(--ink)!important;
+  border-bottom:1px solid var(--rust)!important;
+}
+footer{box-shadow:none!important}
+
+/* Revenue Leak Check — more like a founder worksheet than an app */
+.hero{
+  padding:5.5rem 0 3.5rem!important;
+}
+.hero h1{
+  font-size:clamp(2.8rem,5.5vw,4.8rem)!important;
+  line-height:1!important;
+  letter-spacing:-.045em!important;
+  max-width:900px!important;
+}
+.lead{
+  font-size:1.2rem!important;
+  line-height:1.62!important;
+  max-width:760px!important;
+}
+.sub{
+  line-height:1.7!important;
+}
+.proof{
+  background:transparent!important;
+  border:0!important;
+  border-left:3px solid var(--rust)!important;
+  padding:.25rem 0 .25rem 1.2rem!important;
+  margin-top:2rem!important;
+}
+.quiz{
+  padding-top:1rem!important;
+}
+.question{
+  background:transparent!important;
+  border:0!important;
+  border-top:1px solid var(--line)!important;
+  margin:0!important;
+  padding:2.3rem 0!important;
+  box-shadow:none!important;
+}
+.question:first-of-type{
+  border-top:1px solid var(--ink)!important;
+}
+.question h2{
+  font-size:clamp(1.35rem,2.3vw,1.85rem)!important;
+  letter-spacing:-.02em!important;
+  margin:.55rem 0 .65rem!important;
+}
+.qnum{color:var(--rust-dark)!important}
+.choices{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:.6rem!important;
+  margin-top:1.2rem!important;
+}
+.choice label{
+  background:transparent!important;
+  border:1px solid var(--line)!important;
+  border-radius:1px!important;
+  padding:.7rem 1rem!important;
+  font-size:.9rem!important;
+}
+.choice input:checked+label{
+  background:var(--ink)!important;
+  color:var(--paper)!important;
+  border-color:var(--ink)!important;
+  box-shadow:none!important;
+}
+.result-btn{
+  background:var(--ink)!important;
+  color:var(--paper)!important;
+  padding:14px 20px!important;
+}
+#result{
+  background:var(--charcoal)!important;
+  padding:2.5rem!important;
+  border-top:3px solid var(--rust)!important;
+}
+.next{
+  background:transparent!important;
+  color:var(--paper)!important;
+  padding:1.5rem 0 0!important;
+  border-radius:0!important;
+  border-top:1px solid rgba(255,255,255,.2)!important;
+}
+.next p{color:#D9D3CA!important}
+.next .btn.secondary{
+  background:transparent!important;
+  color:var(--paper)!important;
+  border-color:rgba(255,255,255,.35)!important;
+}
+.next .btn.primary{
+  background:var(--paper)!important;
+  color:var(--ink)!important;
+}
+.ladder{
+  padding:5rem 0!important;
+}
+.ladder-grid{
+  display:grid!important;
+  grid-template-columns:repeat(3,1fr)!important;
+  gap:2.5rem!important;
+  margin-top:2.5rem!important;
+}
+.card{
+  background:transparent!important;
+  border:0!important;
+  border-top:1px solid var(--ink)!important;
+  padding:1.25rem 0 0!important;
+  box-shadow:none!important;
+}
+.card .tag{color:var(--rust-dark)!important}
+.card p{font-size:.92rem!important;line-height:1.65!important}
+footer{
+  background:var(--charcoal)!important;
+  color:#D3CEC5!important;
+}
+@media(max-width:760px){
+  .ladder-grid{grid-template-columns:1fr!important;gap:1.8rem!important}
+  .choices{display:grid!important;grid-template-columns:1fr!important}
+}
+
 </style>
 </head>
 <body>
